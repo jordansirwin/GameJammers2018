@@ -30,17 +30,13 @@ public class MapManager : MonoBehaviour {
     [SerializeField]
     private Transform rightSpawnLimit;
 
+    [Tooltip("Link to the GameManager")]
+    [SerializeField]
     private GameManager _gameManager;
 
 	// keep track of next time to spawn things
 	private float _timeUntilNextHazardSpawn;
 	private float _timeUntilNextBonusSpawn;
-
-	public void Start()
-	{
-        _gameManager = FindObjectOfType<GameManager>();
-	}
-
 
 	// Update is called once per frame
 	void Update () {
