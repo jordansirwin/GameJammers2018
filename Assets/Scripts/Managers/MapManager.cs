@@ -75,8 +75,8 @@ public class MapManager : MonoBehaviour {
 	}
 
 	void SpawnBonus() {
-		var rndIndex = Random.Range(0, hazardPrefabs.Length);
-        SpawnObject(hazardPrefabs[rndIndex]);
+        var rndIndex = Random.Range(0, bonusPrefabs.Length);
+        SpawnObject(bonusPrefabs[rndIndex]);
 
 		// get time to spawn next hazard
 		_timeUntilNextBonusSpawn = GetNextSpawnTime(defaultBonusSpawnRate);
@@ -91,7 +91,6 @@ public class MapManager : MonoBehaviour {
 	float GetNextSpawnTime(float defaultRate) {
 		// set new spawn time
         // as player speed increases, spawn faster
-        //var playerSpeed = _gameManager.BaseSpeed;
 		var playerSpeed = _gameManager.GameSpeedY;
 		return defaultRate - playerSpeed;
 	}
