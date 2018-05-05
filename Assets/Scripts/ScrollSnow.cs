@@ -21,8 +21,8 @@ public class ScrollSnow : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        float OffsetX = Time.time * ScrollX;
-        float OffsetY = Time.time * -gameManager.BaseSpeed/30;
+        float OffsetX = Time.time * -gameManager.GameSpeedX / 20;
+        float OffsetY = Time.time * -gameManager.GameSpeedY / 30;
         _renderer.material.mainTextureOffset = new Vector2(OffsetX, OffsetY);
     }
 }

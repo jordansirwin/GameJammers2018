@@ -85,14 +85,14 @@ public class MapManager : MonoBehaviour {
     void SpawnObject(ActorManager prefab) {
         var actor = Instantiate(prefab, _spawnObjectParent.transform);
         actor.transform.position = GetSpawnPosition();
-        actor.SetSpeed(_gameManager.BaseSpeed);
         actor.SetDespawnBoundary(topDespawnBoundary.position);
     }
 
 	float GetNextSpawnTime(float defaultRate) {
 		// set new spawn time
-		// as player speed increases, spawn faster
-		var playerSpeed = _gameManager.BaseSpeed;
+        // as player speed increases, spawn faster
+        //var playerSpeed = _gameManager.BaseSpeed;
+		var playerSpeed = _gameManager.GameSpeedY;
 		return defaultRate - playerSpeed;
 	}
 

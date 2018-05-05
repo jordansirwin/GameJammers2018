@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerManager: {fileID: 1523042045}
-  _useMouseAsTouch: 1
+  _useMouseAsTouch: 0
 --- !u!1 &284232202
 GameObject:
   m_ObjectHideFlags: 0

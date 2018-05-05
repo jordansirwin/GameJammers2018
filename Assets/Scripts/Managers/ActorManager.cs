@@ -3,14 +3,15 @@ using System.Collections;
 
 public class ActorManager : MonoBehaviour
 {
-    private float _speed;
     private Vector3 _despawnPosition;
+    private GameManager _gameManager;
 
-    public void SetSpeed(float speed) {
-        _speed = speed;
-    }
+	private void Start()
+	{
+        _gameManager = GameManager.Instance;
+	}
 
-    public void SetDespawnBoundary(Vector3 position) {
+	public void SetDespawnBoundary(Vector3 position) {
         _despawnPosition = position;
     }
 
@@ -23,7 +24,9 @@ public class ActorManager : MonoBehaviour
         }
 
         // move the actor "up" the screen by their speed
-        transform.Translate(Vector3.up * _speed * Time.deltaTime);
+        var newPosition = new Vector3(_gameManager.GameSpeedX, _gameManager.GameSpeedY, 0) * Time.deltaTime;
+        //var newPosition = new Vector3(0, _gameManager.BaseSpeed * Time.deltaTime, 0) ;
+        transform.Translate(newPosition,Space.World);
 	}
 
     private void Despawn() {
