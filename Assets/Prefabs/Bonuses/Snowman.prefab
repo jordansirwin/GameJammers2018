@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33674575386808736}
   - component: {fileID: 23224237940739068}
   - component: {fileID: 95093937388595760}
+  - component: {fileID: 114358604325147206}
   m_Layer: 0
   m_Name: Snowman
   m_TagString: Untagged
@@ -100,3 +101,14 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114358604325147206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1587170889561384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07840c56689474054b2bf7e2dff88cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
