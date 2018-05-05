@@ -7,26 +7,41 @@ public class MapManager : MonoBehaviour {
 	public GameObject player;
 	
 	[Tooltip("Default rate (in seconds) to spawn hazards")]
-	public float defaultHazardSpawnRate = 10f;
+    [SerializeField] 
+    private float defaultHazardSpawnRate = 10f;
+
 	[Tooltip("Default rate (in seconds) to spawn bonuses")]
-	public float defaultBonusSpawnRate = 10f;
+    [SerializeField]
+    private float defaultBonusSpawnRate = 10f;
+
 	[Tooltip("Prefabs of hazards to spawn")]
-	public GameObject[] hazards;
+    [SerializeField]
+    private ActorManager[] hazardPrefabs;
+
 	[Tooltip("Prefabs of bonuses to spawn")]
-	public GameObject[] bonuses;
+    [SerializeField]
+    private ActorManager[] bonusPrefabs;
 
 	[Tooltip("Farthest left point to spawn a hazard/bonus")]
-	public Transform leftSpawnLimit;
-	[Tooltip("Farthest right point to spawn a hazard/bonus")]
-	public Transform rightSpawnLimit;
+    [SerializeField]
+    private Transform leftSpawnLimit;
 
-	// private GameManager _gameManager;
+	[Tooltip("Farthest right point to spawn a hazard/bonus")]
+    [SerializeField]
+    private Transform rightSpawnLimit;
+
+    private GameManager _gameManager;
 
 	// keep track of next time to spawn things
 	private float _timeUntilNextHazardSpawn;
 	private float _timeUntilNextBonusSpawn;
 
-	
+	public void Start()
+	{
+        _gameManager = FindObjectOfType<GameManager>();
+	}
+
+
 	// Update is called once per frame
 	void Update () {
 		// stay aligned with player so we always spawn objects under them
@@ -49,25 +64,30 @@ public class MapManager : MonoBehaviour {
 	}
 
 	void SpawnHazard() {
-		var rndIndex = Random.Range(0, hazards.Length);
-		var go = Instantiate(hazards[rndIndex], GetSpawnPosition(), Quaternion.identity);
+        var rndIndex = Random.Range(0, hazardPrefabs.Length);
+        SpawnObject(hazardPrefabs[rndIndex]);
 
 		// get time to spawn next hazard
 		_timeUntilNextHazardSpawn = GetNextSpawnTime(defaultHazardSpawnRate);
 	}
 
 	void SpawnBonus() {
-		var rndIndex = Random.Range(0, hazards.Length);
-		Instantiate(hazards[rndIndex], GetSpawnPosition(), Quaternion.identity);
+		var rndIndex = Random.Range(0, hazardPrefabs.Length);
+        SpawnObject(hazardPrefabs[rndIndex]);
 
 		// get time to spawn next hazard
 		_timeUntilNextBonusSpawn = GetNextSpawnTime(defaultBonusSpawnRate);
 	}
 
+    void SpawnObject(ActorManager prefab) {
+        var actor = Instantiate(prefab, GetSpawnPosition(), Quaternion.identity);
+        actor.SetSpeed(_gameManager.BaseSpeed);
+    }
+
 	float GetNextSpawnTime(float defaultRate) {
 		// set new spawn time
 		// as player speed increases, spawn faster
-		var playerSpeed = 1f;//_gameManager.BaseSpeed;
+		var playerSpeed = _gameManager.BaseSpeed;
 		return defaultRate - playerSpeed;
 	}
 

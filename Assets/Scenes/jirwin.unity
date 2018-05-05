@@ -113,6 +113,47 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &208823586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 208823588}
+  - component: {fileID: 208823587}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &208823587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 208823586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01bd48f1596cb304f866b859492b1778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseSpeedStart: 1
+--- !u!4 &208823588
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 208823586}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.902667, y: -5.2262225, z: -10.384536}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &237205088
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,11 +520,13 @@ MonoBehaviour:
   player: {fileID: 1216211716}
   defaultHazardSpawnRate: 5
   defaultBonusSpawnRate: 10
-  hazards:
-  - {fileID: 1036061218122062, guid: 446f6630673ef3646bafd6624e9a4a99, type: 2}
-  - {fileID: 1192186687309234, guid: a78f807356375ad4393cc287435268f9, type: 2}
-  bonuses:
-  - {fileID: 1400301705982604, guid: 146346b0732f1ad4297cb50087771a86, type: 2}
+  hazardPrefabs:
+  - {fileID: 114831466593361940, guid: b9ab0ef5ff79d8d46a95205ecb85fc97, type: 2}
+  - {fileID: 114650808535193460, guid: a78f807356375ad4393cc287435268f9, type: 2}
+  - {fileID: 114358604325147206, guid: 30c6125e48c4a7d40865311f73d633a7, type: 2}
+  bonusPrefabs:
+  - {fileID: 114556743067400404, guid: 446f6630673ef3646bafd6624e9a4a99, type: 2}
+  - {fileID: 114810211116470190, guid: aeba93cf5a9ddf84d8e5f40d34cd99ae, type: 2}
   leftSpawnLimit: {fileID: 1481308418}
   rightSpawnLimit: {fileID: 237205089}
 --- !u!4 &1676308051

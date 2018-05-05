@@ -36,6 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4855241703124660}
+  - component: {fileID: 114810211116470190}
   m_Layer: 0
   m_Name: Pile of Dynamite
   m_TagString: Untagged
@@ -399,3 +400,14 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1935157996178008}
   m_Mesh: {fileID: 4300010, guid: 98fc9a80f1406504aa6c2ea1d8d50f06, type: 3}
+--- !u!114 &114810211116470190
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1255177055511282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07840c56689474054b2bf7e2dff88cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
