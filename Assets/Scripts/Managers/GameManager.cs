@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    // Config values
-    [SerializeField] private float _baseSpeedStart;
+    [SerializeField] private float _baseSpeed = 5;
 
-    [SerializeField] private float _baseSpeed;
+    private float _speedModifyX = 0;
+    private float _speedModifyY = 1;
 
     public float BaseSpeed { get { return _baseSpeed; } }
+    public float GameSpeedX { get { return _speedModifyX * _baseSpeed; } }
+    public float GameSpeedY { get { return _speedModifyY * _baseSpeed; } }
+
     public float Score { get { return CalculateScore(); } }
 
     private void Start()
@@ -19,13 +22,14 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void Intitialize()
     {
-        _baseSpeed = _baseSpeedStart;
+        _speedModifyX = 0;
+        _speedModifyY = 1;
     }
 
-    public void ModifyBaseSpeed(float amount)
+    public void SetSpeedModifiers(float x, float y)
     {
-        _baseSpeed += amount;
-        // TODO: Affect other things (avalanche)
+        _speedModifyX = x;
+        _speedModifyY = y;
     }
 
     private float CalculateScore()

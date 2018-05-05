@@ -22,6 +22,23 @@ public class PlayerCharacter : MonoBehaviour
         {
             CurrentDirection = newDirection;
             AdjustRotation();
+            UpdateGameManager();
+        }
+    }
+
+    private void UpdateGameManager()
+    {
+        switch (CurrentDirection)
+        {
+            case PlayerDirection.Straight:
+                GameManager.Instance.SetSpeedModifiers(0, 1);
+                break;
+            case PlayerDirection.Left:
+                GameManager.Instance.SetSpeedModifiers(0.5f, 0.5f);
+                break;
+            case PlayerDirection.Right:
+                GameManager.Instance.SetSpeedModifiers(-0.5f, 0.5f);
+                break;
         }
     }
 
