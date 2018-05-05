@@ -7,7 +7,7 @@ public class GameManager : MonoSingleton<GameManager>
     // Config values
     [SerializeField] private float _baseSpeedStart;
 
-    private float _baseSpeed;
+    [SerializeField] private float _baseSpeed;
 
     public float BaseSpeed { get { return _baseSpeed; } }
     public float Score { get { return CalculateScore(); } }

@@ -30,9 +30,16 @@ public class MapManager : MonoBehaviour {
     [SerializeField]
     private Transform rightSpawnLimit;
 
+    [Tooltip("Destroy spawned objects when they exceed this point")]
+    [SerializeField]
+    private Transform topDespawnBoundary;
+
     [Tooltip("Link to the GameManager")]
     [SerializeField]
     private GameManager _gameManager;
+    [Tooltip("Link to the parent of spawned objects")]
+    [SerializeField]
+    private GameObject _spawnObjectParent;
 
 	// keep track of next time to spawn things
 	private float _timeUntilNextHazardSpawn;
@@ -76,8 +83,10 @@ public class MapManager : MonoBehaviour {
 	}
 
     void SpawnObject(ActorManager prefab) {
-        var actor = Instantiate(prefab, GetSpawnPosition(), Quaternion.identity);
+        var actor = Instantiate(prefab, _spawnObjectParent.transform);
+        actor.transform.position = GetSpawnPosition();
         actor.SetSpeed(_gameManager.BaseSpeed);
+        actor.SetDespawnBoundary(topDespawnBoundary.position);
     }
 
 	float GetNextSpawnTime(float defaultRate) {
