@@ -891,7 +891,7 @@ MonoBehaviour:
   _avalanceContainer: {fileID: 2006120150}
   _topMostPosition: {fileID: 119244405}
   _bottomMostPosition: {fileID: 952510900}
-  _moveRate: 0.5
+  _moveRate: 1
   _moveMargin: 0.001
   _debugEncroachModify: 0
 --- !u!4 &2006120152
