@@ -9,8 +9,10 @@ public class AvalancheManager : MonoSingleton<AvalancheManager>
     [SerializeField] private GameObject _topMostPosition;
     [SerializeField] private GameObject _bottomMostPosition;
 
+    [Tooltip("Rate the avalanche moves between positions")]
     [SerializeField] private float _moveRate = 0.5f;
-    [SerializeField] private float _moveMargin = 0.001f;
+    [Tooltip("How far Avalanche can be from target position to be acceptably close.")]
+    [SerializeField] private float _moveMarginOfError = 0.001f;
 
     private float _minY;
     private float _maxY;
@@ -71,12 +73,19 @@ public class AvalancheManager : MonoSingleton<AvalancheManager>
 
     IEnumerator MoveToTargetGradual()
     {
-        while (Vector3.Distance(_avalancheObject.transform.position, _targetEncroachPosition) > _moveMargin)
+        while (Vector3.Distance(_avalancheObject.transform.position, _targetEncroachPosition) > _moveMarginOfError)
         {
             var step = _moveRate * Time.deltaTime;
             _avalancheObject.transform.position = Vector3.MoveTowards(_avalancheObject.transform.position, _targetEncroachPosition, step);
 
             yield return null;
         }
+    }
+
+    [SerializeField] float _debugEncroachModify = 0;
+    [ContextMenu("ModifyEncroachmentByDebug")]
+    public void DebugModify()
+    {
+        ModifyEncroachment(_debugEncroachModify);
     }
 }
