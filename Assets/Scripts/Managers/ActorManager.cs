@@ -90,7 +90,7 @@ public class ActorManager : MonoBehaviour
         if (_isHazard)
         {
             _avalancheManager.ModifyEncroachment(_avalancheEncroachmentAmount);
-            ///_playerCharacter.Modify...
+            _playerCharacter.ModifyFallback(_playerFallbackAmount);
         }
     }
 
