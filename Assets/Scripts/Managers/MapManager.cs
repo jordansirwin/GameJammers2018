@@ -6,22 +6,6 @@ public class MapManager : MonoBehaviour {
 
 	public GameObject player;
 	
-	[Tooltip("Default rate (in seconds) to spawn hazards")]
-    [SerializeField] 
-    private float defaultHazardSpawnRate = 10f;
-
-	[Tooltip("Default rate (in seconds) to spawn bonuses")]
-    [SerializeField]
-    private float defaultBonusSpawnRate = 10f;
-
-	[Tooltip("Prefabs of hazards to spawn")]
-    [SerializeField]
-    private ActorManager[] hazardPrefabs;
-
-	[Tooltip("Prefabs of bonuses to spawn")]
-    [SerializeField]
-    private ActorManager[] bonusPrefabs;
-
 	[Tooltip("Farthest left point to spawn a hazard/bonus")]
     [SerializeField]
     private Transform leftSpawnLimit;
@@ -37,6 +21,11 @@ public class MapManager : MonoBehaviour {
     [Tooltip("Link to the GameManager")]
     [SerializeField]
     private GameManager _gameManager;
+
+    [Tooltip("Link to KnobsForKevin for well-tuned properties")]
+    [SerializeField]
+    private KnobsForKevin _knobs;
+
     [Tooltip("Link to the parent of spawned objects")]
     [SerializeField]
     private GameObject _spawnObjectParent;
@@ -67,19 +56,19 @@ public class MapManager : MonoBehaviour {
 	}
 
 	void SpawnHazard() {
-        var rndIndex = Random.Range(0, hazardPrefabs.Length);
-        SpawnObject(hazardPrefabs[rndIndex]);
+        var rndIndex = Random.Range(0, _knobs.hazardPrefabs.Length);
+        SpawnObject(_knobs.hazardPrefabs[rndIndex]);
 
 		// get time to spawn next hazard
-		_timeUntilNextHazardSpawn = GetNextSpawnTime(defaultHazardSpawnRate);
+        _timeUntilNextHazardSpawn = GetNextSpawnTime(_knobs.defaultHazardSpawnRate);
 	}
 
 	void SpawnBonus() {
-        var rndIndex = Random.Range(0, bonusPrefabs.Length);
-        SpawnObject(bonusPrefabs[rndIndex]);
+        var rndIndex = Random.Range(0, _knobs.bonusPrefabs.Length);
+        SpawnObject(_knobs.bonusPrefabs[rndIndex]);
 
 		// get time to spawn next hazard
-		_timeUntilNextBonusSpawn = GetNextSpawnTime(defaultBonusSpawnRate);
+        _timeUntilNextBonusSpawn = GetNextSpawnTime(_knobs.defaultBonusSpawnRate);
 	}
 
     void SpawnObject(ActorManager prefab) {
