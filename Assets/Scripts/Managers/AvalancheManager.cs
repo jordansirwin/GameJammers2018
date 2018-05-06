@@ -79,4 +79,11 @@ public class AvalancheManager : MonoSingleton<AvalancheManager>
             yield return null;
         }
     }
+
+    [SerializeField] float _debugEncroachModify = 0;
+    [ContextMenu("ModifyEncroachmentByDebug")]
+    public void DebugModify()
+    {
+        ModifyEncroachment(_debugEncroachModify);
+    }
 }
