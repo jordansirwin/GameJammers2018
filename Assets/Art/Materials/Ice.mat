@@ -7,8 +7,8 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Ice
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _GLOSSYREFLECTIONS_OFF _NORMALMAP _PARALLAXMAP _SPECGLOSSMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -18,8 +18,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AmbientOcculsion:
+        m_Texture: {fileID: 2800000, guid: 1b877a8821ad74d58a9a805d9db07571, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 10d035e2df7a85543b1e33e4720c120c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -36,41 +40,107 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 0.2, y: 0.5}
+        m_Offset: {x: 0, y: 0}
+    - _Heightmap:
+        m_Texture: {fileID: 2800000, guid: 231f2b9bf5c8c4b23b5d9d5af52e01d0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 0cd805f73f2966c4fa7301bb457dde88, type: 3}
+        m_Scale: {x: 0.2, y: 0.5}
+        m_Offset: {x: 0, y: 0}
+    - _MainTexture:
+        m_Texture: {fileID: 2800000, guid: cb147cfeecb854273b278011a513732d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: bf02cf77d40f04818aada3fdaf8f0025, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a59fd5d48a6f48c42b11d4c857ed377a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
+        m_Texture: {fileID: 2800000, guid: fc84566ffad143247b85992d230ac27f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 2800000, guid: 8ce3939b7a5687b46a0685db50812546, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Specular:
+        m_Texture: {fileID: 2800000, guid: 1b877a8821ad74d58a9a805d9db07571, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_1666:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_8358:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - PixelSnap: 0
     - _BumpScale: 1
+    - _Bumpiness: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _GlossMapScale: 1
+    - _Gloss: 0.5
+    - _GlossMapScale: 0.323
     - _Glossiness: 0.5
-    - _GlossyReflections: 1
+    - _GlossyReflections: 0
+    - _LightDisperse: 0
+    - _LightReflectance: 0.794
     - _Metallic: 0
     - _Mode: 0
+    - _NormalSharpness: 0.717
     - _OcclusionStrength: 1
-    - _Parallax: 0.02
+    - _Parallax: 0.028
+    - _Roughness: 0.618
+    - _Shadows: 0
+    - _Shininess: 0.241
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _Specularity: 0.939
     - _SrcBlend: 1
+    - _Transparency: 1
     - _UVSec: 0
     - _ZWrite: 1
+    - _node_1420: 0
+    - _node_1751: 0.473
+    - _node_2764: 0
+    - _node_3396: 0
+    - _node_3449: 0
+    - _node_3709: 1
+    - _node_4351: 1
+    - _node_4701: 0
+    - _node_4934: 0.5
+    - _node_4988: 0
+    - _node_5110: 0
+    - _node_5367: 1
+    - _node_5837: 0.3162393
+    - _node_6147: 0.58
+    - _node_6971: 0.139
+    - _node_7212: 1
+    - _node_7820: 1
+    - _node_8632: 1
+    - _node_9777: 0
     m_Colors:
-    - _Color: {r: 0.091, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.6985294, g: 0.9518081, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _node_1071: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _node_2885: {r: 0.5147059, g: 0.4200909, b: 0.4200909, a: 1}
+    - _node_528: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _node_5360: {r: 0.7132353, g: 0.7132353, b: 0.7132353, a: 1}
+    - _node_8583: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _node_8628: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _node_9880: {r: 0.5, g: 0.5, b: 0.5, a: 1}
