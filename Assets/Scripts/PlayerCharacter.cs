@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
+    [Tooltip("Link to KnobsForKevin for well-tuned properties")]
+    [SerializeField] private KnobsForKevin _knobs;
+    [SerializeField] private GameObject _bottomMostPosition;
+    [Tooltip("How far Avalanche can be from target position to be acceptably close.")]
+    [SerializeField] private float _moveMarginOfError = 0.001f;
+
+    private float _minY;
+    private Coroutine _moveToFallbackRoutine;
+    private Vector3 _targetFallbackPosition;
+
     public PlayerDirection CurrentDirection { get; private set; }
     public Vector3 CurrentPosition
     {
@@ -13,6 +23,7 @@ public class PlayerCharacter : MonoBehaviour
     private void Start()
     {
         CurrentDirection = PlayerDirection.Straight;
+        _minY = _bottomMostPosition.transform.position.y;
     }
 
     private void Update()
@@ -22,11 +33,44 @@ public class PlayerCharacter : MonoBehaviour
         {
             CurrentDirection = newDirection;
             AdjustRotation();
-            UpdateGameManager();
+            UpdateGameManagerSpeed();
         }
     }
 
-    private void UpdateGameManager()
+    public void ModifyFallback(float amount)
+    {
+        float newY = _targetFallbackPosition.y + amount;
+        _targetFallbackPosition.y = Mathf.Max(_minY, newY);
+        MoveToTargetFallback();
+    }
+
+    private void MoveToTargetFallback(bool force = false)
+    {
+        if(_moveToFallbackRoutine != null)
+        {
+            StopCoroutine(_moveToFallbackRoutine);
+            _moveToFallbackRoutine = null;
+        }
+
+        if (force)
+            gameObject.transform.position = _targetFallbackPosition;
+        else
+            _moveToFallbackRoutine = StartCoroutine(MoveToTargetGradual());
+    }
+
+    IEnumerator MoveToTargetGradual()
+    {
+        while (Vector3.Distance(gameObject.transform.position, _targetFallbackPosition) > _moveMarginOfError)
+        {
+            var moveRate = _knobs.encroachSpeedMultiplier * GameManager.Instance.BaseSpeed;
+            var step = moveRate * Time.deltaTime;
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, _targetFallbackPosition, step);
+
+            yield return null;
+        }
+    }
+
+    private void UpdateGameManagerSpeed()
     {
         switch (CurrentDirection)
         {
@@ -64,5 +108,12 @@ public class PlayerCharacter : MonoBehaviour
 
         var currentRotation = gameObject.transform.rotation.eulerAngles;
         gameObject.transform.rotation = Quaternion.Euler(currentRotation.x, currentRotation.y, newAngle);
+    }
+
+    [SerializeField] float _debugEncroachModify = 0;
+    [ContextMenu("ModifyEncroachmentByDebug")]
+    public void DebugModify()
+    {
+        ModifyFallback(_debugEncroachModify);
     }
 }
