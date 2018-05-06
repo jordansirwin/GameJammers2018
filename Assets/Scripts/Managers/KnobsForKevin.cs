@@ -8,6 +8,9 @@ public class KnobsForKevin : MonoSingleton<KnobsForKevin>
     [Tooltip("Initial speed the game starts with. All objects derive their speeds from this base.")]
     public float baseSpeed = 5;
 
+    [Tooltip("The avalanche and player move speeds will come from the base speed multiplied by this value.")]
+    public float encroachSpeedMultiplier = 0.1f;
+
     [Header("Spawn Object Knobs")]
 
     [Tooltip("Default rate (in seconds) to spawn hazards")]

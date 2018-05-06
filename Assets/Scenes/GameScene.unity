@@ -484,6 +484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 5
+  encroachSpeedMultiplier: 0.1
   defaultHazardSpawnRate: 10
   defaultBonusSpawnRate: 10
   hazardPrefabs:
@@ -662,6 +663,48 @@ Transform:
   m_Father: {fileID: 1385405926}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1210914423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1210914424}
+  - component: {fileID: 1210914425}
+  m_Layer: 0
+  m_Name: PlayerBottomMostBoundary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1210914424
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1210914423}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2006120152}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1210914425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1210914423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c889ff422e353c54fab52fa24a26f5bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _color: {r: 0, g: 0.8758622, b: 1, a: 1}
+  _size: {x: 54.46, y: 1, z: 1}
 --- !u!1 &1385405924
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,6 +795,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114833406642987632, guid: c032ae69238be974986afc65091eff78,
+        type: 2}
+      propertyPath: _bottomMostPosition
+      value: 
+      objectReference: {fileID: 1210914423}
+    - target: {fileID: 114833406642987632, guid: c032ae69238be974986afc65091eff78,
+        type: 2}
+      propertyPath: _knobs
+      value: 
+      objectReference: {fileID: 978890832}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c032ae69238be974986afc65091eff78, type: 2}
   m_IsPrefabParent: 0
@@ -891,8 +944,8 @@ MonoBehaviour:
   _avalanceContainer: {fileID: 2006120150}
   _topMostPosition: {fileID: 119244405}
   _bottomMostPosition: {fileID: 952510900}
-  _moveRate: 1
-  _moveMargin: 0.001
+  _knobs: {fileID: 978890832}
+  _moveMarginOfError: 0.001
   _debugEncroachModify: 0
 --- !u!4 &2006120152
 Transform:
@@ -906,6 +959,7 @@ Transform:
   m_Children:
   - {fileID: 119244407}
   - {fileID: 952510902}
+  - {fileID: 1210914424}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

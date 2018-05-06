@@ -9,8 +9,9 @@ public class AvalancheManager : MonoSingleton<AvalancheManager>
     [SerializeField] private GameObject _topMostPosition;
     [SerializeField] private GameObject _bottomMostPosition;
 
-    [Tooltip("Rate the avalanche moves between positions")]
-    [SerializeField] private float _moveRate = 0.5f;
+    [Tooltip("Link to KnobsForKevin for well-tuned properties")]
+    [SerializeField] private KnobsForKevin _knobs;
+
     [Tooltip("How far Avalanche can be from target position to be acceptably close.")]
     [SerializeField] private float _moveMarginOfError = 0.001f;
 
@@ -75,7 +76,8 @@ public class AvalancheManager : MonoSingleton<AvalancheManager>
     {
         while (Vector3.Distance(_avalancheObject.transform.position, _targetEncroachPosition) > _moveMarginOfError)
         {
-            var step = _moveRate * Time.deltaTime;
+            var moveRate = _knobs.encroachSpeedMultiplier * GameManager.Instance.BaseSpeed;
+            var step = moveRate * Time.deltaTime;
             _avalancheObject.transform.position = Vector3.MoveTowards(_avalancheObject.transform.position, _targetEncroachPosition, step);
 
             yield return null;
