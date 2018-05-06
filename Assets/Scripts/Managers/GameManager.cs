@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    [SerializeField] private float _baseSpeed = 5;
-
     private float _speedModifyX = 0;
     private float _speedModifyY = 1;
 
-    public float BaseSpeed { get { return _baseSpeed; } }
-    public float GameSpeedX { get { return _speedModifyX * _baseSpeed; } }
-    public float GameSpeedY { get { return _speedModifyY * _baseSpeed; } }
+    [Tooltip("Link to KnobsForKevin for well-tuned properties")]
+    [SerializeField]
+    private KnobsForKevin _knobs;
+
+    public float BaseSpeed { get { return _knobs.baseSpeed; } }
+    public float GameSpeedX { get { return _speedModifyX * _knobs.baseSpeed; } }
+    public float GameSpeedY { get { return _speedModifyY * _knobs.baseSpeed; } }
 
     public float Score { get { return CalculateScore(); } }
 
