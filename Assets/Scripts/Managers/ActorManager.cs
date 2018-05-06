@@ -10,6 +10,14 @@ public class ActorManager : MonoBehaviour
     private AvalancheManager _avalancheManager;
     private GameManager _gameManager;
 
+    [Tooltip("Particle system to play when a collision with this object happens")]
+    [SerializeField]
+    private ParticleSystem _onCollisionParticleSystem;
+
+    [Tooltip("Audio to play when a collision with this object happens")]
+    [SerializeField]
+    private AudioClip _onCollisionAudioClip;
+
     [Tooltip("True if this is a hazard, false if it's a bonus")]
     [SerializeField]
     private bool _isHazard;
@@ -59,8 +67,31 @@ public class ActorManager : MonoBehaviour
     }
 
     private void HandleHazardCollision() {
-        _avalancheManager.ModifyEncroachment(_avalancheEncroachmentAmount);
-        ///_playerCharacter.Modify...
+
+        if (_onCollisionParticleSystem != null)
+        {
+            // clone it so we can destroy our object without stopping the pfx
+            var pfx = Instantiate(_onCollisionParticleSystem);
+            pfx.Play();
+            Destroy(pfx, 5f);
+        }
+
+        if (_onCollisionAudioClip != null)
+        {
+            // clone it so we can destroy our object without stopping the pfx
+            var sfx = Instantiate(_onCollisionParticleSystem);
+            sfx.Play();
+            Destroy(sfx, 5f);
+        }
+
+        Despawn();
+
+        // if player hit a hazard, make adjustments based on its properties
+        if (_isHazard)
+        {
+            _avalancheManager.ModifyEncroachment(_avalancheEncroachmentAmount);
+            ///_playerCharacter.Modify...
+        }
     }
 
 	private void OnTriggerEnter(Collider other)
@@ -69,11 +100,7 @@ public class ActorManager : MonoBehaviour
         if (other.tag != "Player") return;
 
         Debug.Log("Trigger: " + gameObject.name + " triggered by " + other.gameObject.name);
-        Despawn();
 
-        // if player hit a hazard, make adjustments based on its properties
-        if(_isHazard) {
-            HandleHazardCollision();
-        }
+        HandleHazardCollision();
 	}
 }
