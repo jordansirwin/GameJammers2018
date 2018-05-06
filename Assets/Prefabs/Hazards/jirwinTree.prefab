@@ -351,6 +351,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07840c56689474054b2bf7e2dff88cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isHazard: 1
+  _avalancheEncroachmentAmount: -2
+  _playerFallbackAmount: 2
 --- !u!136 &136692122855310034
 CapsuleCollider:
   m_ObjectHideFlags: 1
