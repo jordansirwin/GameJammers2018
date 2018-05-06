@@ -75,6 +75,10 @@ public class MapManager : MonoBehaviour {
         var actor = Instantiate(prefab, _spawnObjectParent.transform);
         actor.transform.position = GetSpawnPosition();
         actor.SetDespawnBoundary(topDespawnBoundary.position);
+
+        // does this actor act as a container for other actors? (1 for the object itself)
+        if (actor.GetComponentsInChildren<ActorManager>().Length > 1)
+            actor.SetAsCastOfActors();
     }
 
 	float GetNextSpawnTime(float defaultRate) {
