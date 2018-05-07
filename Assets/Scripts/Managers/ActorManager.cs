@@ -10,6 +10,10 @@ public class ActorManager : MonoBehaviour
     private AvalancheManager _avalancheManager;
     private GameManager _gameManager;
 
+    [Tooltip("Animation to play when a collision with this object happens")]
+    [SerializeField]
+    private Animation _onCollisionAnimation;
+
     [Tooltip("Particle system to play when a collision with this object happens")]
     [SerializeField]
     private ParticleSystem _onCollisionParticleSystem;
@@ -67,6 +71,14 @@ public class ActorManager : MonoBehaviour
     }
 
     private void HandleHazardCollision() {
+
+        if (_onCollisionAnimation != null)
+        {
+            // clone it so we can destroy our object without stopping the pfx
+            var afx = Instantiate(_onCollisionAnimation);
+            afx.Play();
+            Destroy(afx, 5f);
+        }
 
         if (_onCollisionParticleSystem != null)
         {
