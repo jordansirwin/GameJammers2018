@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4102153609606182}
   - component: {fileID: 54994102103437562}
   - component: {fileID: 136902337279636468}
+  - component: {fileID: 114161294401899614}
   m_Layer: 0
   m_Name: Tree_Small
   m_TagString: Untagged
@@ -128,6 +129,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114161294401899614
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1186981162795218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07840c56689474054b2bf7e2dff88cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onCollisionParticleSystem: {fileID: 0}
+  _onCollisionAudioClip: {fileID: 0}
+  _isHazard: 0
+  _avalancheEncroachmentAmount: -2
+  _playerFallbackAmount: 2
 --- !u!136 &136902337279636468
 CapsuleCollider:
   m_ObjectHideFlags: 1
