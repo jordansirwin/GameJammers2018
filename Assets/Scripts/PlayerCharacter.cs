@@ -72,16 +72,19 @@ public class PlayerCharacter : MonoBehaviour
 
     private void UpdateGameManagerSpeed()
     {
+        // get modifiers from knobs
+        var mod = _knobs.playerTurnSpeedModifier;
+
         switch (CurrentDirection)
         {
             case PlayerDirection.Straight:
                 GameManager.Instance.SetSpeedModifiers(0, 1);
                 break;
             case PlayerDirection.Left:
-                GameManager.Instance.SetSpeedModifiers(0.5f, 0.5f);
+                GameManager.Instance.SetSpeedModifiers(mod.x, mod.y);
                 break;
             case PlayerDirection.Right:
-                GameManager.Instance.SetSpeedModifiers(-0.5f, 0.5f);
+                GameManager.Instance.SetSpeedModifiers(-mod.x, mod.y);
                 break;
         }
     }
