@@ -11,6 +11,9 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField]
     private KnobsForKevin _knobs;
 
+    // time game started so we can calculate elapased time
+    private float _startGameTIme;
+
     public float BaseSpeed { get { return _knobs.baseSpeed; } }
     public float GameSpeedX { get { return _speedModifyX * _knobs.baseSpeed; } }
     public float GameSpeedY { get { return _speedModifyY * _knobs.baseSpeed; } }
@@ -20,6 +23,9 @@ public class GameManager : MonoSingleton<GameManager>
     private void Start()
     {
         Intitialize();
+
+        // HACK: Should be called by menu interactions
+        StartNewGame();
     }
 
     public void Intitialize()
@@ -34,11 +40,21 @@ public class GameManager : MonoSingleton<GameManager>
         _speedModifyY = y;
     }
 
-    private float CalculateScore()
+    public void StartNewGame() {
+        Intitialize();
+        _startGameTIme = Time.time;
+        // reset other things here
+    }
+
+    public int CalculateScore()
     {
         float currentSize = AvalancheManager.Instance.Size;
         // TODO: fancy calculations or something
 
-        return currentSize;
+        return (int)currentSize;
+    }
+
+    public float CalculateElapsedTimeSinceGameStart() {
+        return Time.time - _startGameTIme;
     }
 }
