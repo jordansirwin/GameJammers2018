@@ -348,7 +348,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -4.8, y: 21}
+  m_AnchoredPosition: {x: -4.799988, y: 21}
   m_SizeDelta: {x: 59.38, y: 101.13}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &744180630
@@ -626,10 +626,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 5
   encroachSpeedMultiplier: 0.5
+  playerTurnSpeedModifier: {x: 0.5, y: 1}
   defaultHazardSpawnRate: 10
   defaultBonusSpawnRate: 10
   hazardPrefabs:
-  - {fileID: 114650808535193460, guid: 9021690b42e2d4898828f461c0ce6f24, type: 2}
+  - {fileID: 114161294401899614, guid: 9ab7975a32ea7f24d832f688e52b0c6b, type: 2}
+  - {fileID: 114497661346278046, guid: 9fd06795113c1f843bb6e383d9f77ee9, type: 2}
   bonusPrefabs:
   - {fileID: 114810211116470190, guid: aeba93cf5a9ddf84d8e5f40d34cd99ae, type: 2}
   - {fileID: 114358604325147206, guid: 30c6125e48c4a7d40865311f73d633a7, type: 2}

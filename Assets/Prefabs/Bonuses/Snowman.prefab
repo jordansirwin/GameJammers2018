@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4893225343295584}
   - component: {fileID: 114358604325147206}
+  - component: {fileID: 65978372477652218}
   m_Layer: 0
   m_Name: Snowman
   m_TagString: Untagged
@@ -53,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1645020160843188}
   m_LocalRotation: {x: 0, y: 0.9659258, z: -0.2588191, w: 0}
-  m_LocalPosition: {x: 0, y: -6.876426, z: -0.1072001}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2.5, z: 2}
   m_Children: []
   m_Father: {fileID: 4893225343295584}
@@ -66,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1587170889561384}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.3899934, y: 5.2248735, z: 0}
+  m_LocalPosition: {x: 1.9649546, y: -7.9024215, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4812196920565320}
@@ -114,6 +115,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1645020160843188}
   m_Mesh: {fileID: 4300000, guid: 671c2f4f58de2714f940ac2cc8d60e9a, type: 3}
+--- !u!65 &65978372477652218
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1587170889561384}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.1535168, y: 3.572258, z: 1}
+  m_Center: {x: -0.059818923, y: 1.286129, z: 0}
 --- !u!95 &95900914800447900
 Animator:
   serializedVersion: 3
@@ -142,6 +155,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07840c56689474054b2bf7e2dff88cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onCollisionParticleSystem: {fileID: 0}
+  _onCollisionAudioClip: {fileID: 0}
+  _isHazard: 0
+  _avalancheEncroachmentAmount: -2
+  _playerFallbackAmount: 2
 --- !u!136 &136471757179242386
 CapsuleCollider:
   m_ObjectHideFlags: 1
