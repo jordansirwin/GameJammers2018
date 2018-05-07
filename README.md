@@ -4,6 +4,21 @@ Avalache!
 A GameJammers 2018 game.
 
 
+Spawned Object Requirements
+---------------------------
+
+* Parent GameObject requires ActorManager script
+  * Transform should be at 0,0,0 with Rotation 0,0,0
+  * IsHazard: True (if you want collisions change avalanche distance)
+* Parent GameObject requires RigidBody
+  * Requires: IsKinematic: True
+* Child objects of parent can contain any number of models, art, sounds, 
+effects, etc
+  * You can adjust position and rotation of these objects to make it look great
+* A Collider (any non-2D one) is required, but ONLY ONE
+  * Requires: IsTrigger: True
+
+
 ToDo
 ----
 
