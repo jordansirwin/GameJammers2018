@@ -29,16 +29,10 @@ public class KnobsForKevin : MonoSingleton<KnobsForKevin>
     [Header("Spawn Object Knobs")]
 
     [Tooltip("Default rate (in seconds) to spawn hazards")]
-    public float defaultHazardSpawnRate = 10f;
+    public float defaultObjectSpawnRate = 10f;
 
-    [Tooltip("Default rate (in seconds) to spawn bonuses")]
-    public float defaultBonusSpawnRate = 10f;
-
-    [Tooltip("Prefabs of hazards to spawn")]
-    public ActorManager[] hazardPrefabs;
-
-    [Tooltip("Prefabs of bonuses to spawn")]
-    public ActorManager[] bonusPrefabs;
+    [Tooltip("Prefabs of objects to spawn")]
+    public ActorManager[] spawnableObjectPrefabs;
 
 
     [Header("Score Knobs")]

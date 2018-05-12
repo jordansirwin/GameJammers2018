@@ -18,10 +18,6 @@ public class ActorManager : MonoBehaviour
     [SerializeField]
     private AudioClip _onCollisionAudioClip;
 
-    [Tooltip("True if this is a hazard, false if it's a bonus")]
-    [SerializeField]
-    private bool _isHazard;
-
     [Tooltip("If player hits this hazard, how much should the avalanche move (postive numbers move avalanche towards player, negative away")]
     [SerializeField]
     private float _avalancheEncroachmentAmount = -2f;
@@ -86,12 +82,11 @@ public class ActorManager : MonoBehaviour
 
         Despawn();
 
-        // if player hit a hazard, make adjustments based on its properties
-        if (_isHazard)
-        {
+        // move avalanche/player if required
+        if (System.Math.Abs(_avalancheEncroachmentAmount) > float.Epsilon)
             _avalancheManager.ModifyEncroachment(_avalancheEncroachmentAmount);
+        if (System.Math.Abs(_playerFallbackAmount) > float.Epsilon)
             _playerCharacter.ModifyFallback(_playerFallbackAmount);
-        }
     }
 
 	private void OnTriggerEnter(Collider other)
