@@ -6,7 +6,7 @@ using UnityEngine;
 public class AvalancheVisual : MonoBehaviour
 {
     [SerializeField] private AvalancheLayer[] _layers;
-    [SerializeField] private float _size = 0;
+    //[SerializeField] private float _size = 0;
 
     private void Start()
     {
@@ -19,9 +19,11 @@ public class AvalancheVisual : MonoBehaviour
 
     private void Update()
     {
+        var size = AvalancheManager.Instance.Size;
+
         foreach (var layer in _layers)
         {
-            if(_size >= layer.StartAtSize)
+            if(size >= layer.StartAtSize)
             {
                 if (!layer.Particles.isPlaying)
                 {
@@ -32,18 +34,18 @@ public class AvalancheVisual : MonoBehaviour
                 if (layer.Particles.emission.rateOverTime.constant < layer.MaxEmission)
                 {
                     //float step = (layer.MaxAtSize - _size) / (layer.StartAtSize - layer.MaxAtSize);
-                    if (_size >= layer.MaxAtSize)
+                    if (size >= layer.MaxAtSize)
                     {
                         SetEmissionRate(layer.Particles, layer.MaxEmission);
                     }
                     else
                     {
-                        float step = (_size - layer.StartAtSize) / (layer.MaxAtSize - layer.StartAtSize);
+                        float step = (size - layer.StartAtSize) / (layer.MaxAtSize - layer.StartAtSize);
                         SetEmissionRate(layer.Particles, Mathf.Lerp(0, layer.MaxEmission, step));
                     }
                 }
             }
-            if(layer.UseStopAtSize && _size >= layer.StopAtSize && layer.Particles.isPlaying)
+            if(layer.UseStopAtSize && size >= layer.StopAtSize && layer.Particles.isPlaying)
             {
                 layer.Particles.Stop();
             }
