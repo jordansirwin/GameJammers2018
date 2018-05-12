@@ -113,6 +113,16 @@ public class PlayerCharacter : MonoBehaviour
         gameObject.transform.rotation = Quaternion.Euler(currentRotation.x, currentRotation.y, newAngle);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Player OnTriggerEnter!");
+        if (other.tag != "Avalanche")
+            return;
+
+        Debug.Log("Player hit avalanche!");
+        GameManager.Instance.GameOver();
+    }
+
     [SerializeField] float _debugEncroachModify = 0;
     [ContextMenu("ModifyEncroachmentByDebug")]
     public void DebugModify()
