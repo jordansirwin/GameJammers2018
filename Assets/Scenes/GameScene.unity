@@ -1446,48 +1446,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!1 &952510900
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 952510902}
-  - component: {fileID: 952510901}
-  m_Layer: 0
-  m_Name: AvalancheBottomBoundary
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &952510901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 952510900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c889ff422e353c54fab52fa24a26f5bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _color: {r: 0, g: 0.21379328, b: 1, a: 1}
-  _size: {x: 54.03, y: 1, z: 1}
---- !u!4 &952510902
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 952510900}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 9, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2006120152}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &978890831
 GameObject:
   m_ObjectHideFlags: 0
@@ -3085,13 +3043,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a86142c37e9314693989c2abcb9681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _avalanchePrefab: {fileID: 1235887872685524, guid: 53f2a94ec9d0e4a4a97409ae1cef1713,
+  _avalanchePrefab: {fileID: 1447010810945316, guid: 7269a76c76c619e409827deb7cef9635,
     type: 2}
   _avalanceContainer: {fileID: 2006120150}
   _topMostPosition: {fileID: 119244405}
-  _bottomMostPosition: {fileID: 952510900}
+  _startPosition: {fileID: 2051459958}
   _knobs: {fileID: 978890832}
   _moveMarginOfError: 0.001
+  _size: 0
   _debugEncroachModify: 0
 --- !u!4 &2006120152
 Transform:
@@ -3104,8 +3063,50 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 119244407}
-  - {fileID: 952510902}
+  - {fileID: 2051459960}
   - {fileID: 1210914424}
   m_Father: {fileID: 0}
   m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2051459958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2051459960}
+  - component: {fileID: 2051459959}
+  m_Layer: 0
+  m_Name: AvalancheStartPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2051459959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2051459958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c889ff422e353c54fab52fa24a26f5bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _color: {r: 0, g: 0.21379328, b: 1, a: 1}
+  _size: {x: 54.03, y: 1, z: 1}
+--- !u!4 &2051459960
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2051459958}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 12.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2006120152}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
