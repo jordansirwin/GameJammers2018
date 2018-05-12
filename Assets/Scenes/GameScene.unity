@@ -1482,14 +1482,13 @@ MonoBehaviour:
   speedIncreaseAmount: 0.01
   avalancheSizeIncreaseRate: 1
   avalancheSizeIncreaseAmount: 0.5
-  defaultHazardSpawnRate: 10
-  defaultBonusSpawnRate: 10
-  hazardPrefabs:
-  - {fileID: 114161294401899614, guid: 9ab7975a32ea7f24d832f688e52b0c6b, type: 2}
+  defaultObjectSpawnRate: 10
+  spawnableObjectPrefabs:
   - {fileID: 114497661346278046, guid: 9fd06795113c1f843bb6e383d9f77ee9, type: 2}
-  bonusPrefabs:
-  - {fileID: 114810211116470190, guid: aeba93cf5a9ddf84d8e5f40d34cd99ae, type: 2}
-  - {fileID: 114358604325147206, guid: 30c6125e48c4a7d40865311f73d633a7, type: 2}
+  - {fileID: 114249987630521172, guid: 5941bd6caadc84c9da6fee9c71b96f7a, type: 2}
+  - {fileID: 114325999671857870, guid: d1eb657e072c445f3a7053d2aae23fb3, type: 2}
+  - {fileID: 114482770587778296, guid: 5807f61665ce94e32975e7b20f314f17, type: 2}
+  - {fileID: 114436233170187398, guid: 101b1dca0fdf34458adf19dc14742c6e, type: 2}
   goalScores: 0a00000064000000fa000000f4010000e8030000
 --- !u!4 &978890833
 Transform:

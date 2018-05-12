@@ -31,8 +31,7 @@ public class MapManager : MonoBehaviour {
     private GameObject _spawnObjectParent;
 
 	// keep track of next time to spawn things
-	private float _timeUntilNextHazardSpawn;
-	private float _timeUntilNextBonusSpawn;
+    private float _timeUntilNextObjectSpawn;
 
 	// Update is called once per frame
 	void Update () {
@@ -44,15 +43,10 @@ public class MapManager : MonoBehaviour {
 		// stay aligned with player so we always spawn objects under them
 		AlignPositionWithPlayer();
 
-		// spawn hazards
-		_timeUntilNextHazardSpawn -= Time.deltaTime;
-		if(_timeUntilNextHazardSpawn <= 0)
-			SpawnHazard();
-
-		// spawn bonuses
-		_timeUntilNextBonusSpawn -= Time.deltaTime;
-		if(_timeUntilNextBonusSpawn <= 0)
-			SpawnBonus();
+		// spawn objects
+		_timeUntilNextObjectSpawn -= Time.deltaTime;
+		if(_timeUntilNextObjectSpawn <= 0)
+			SpawnObject();
 	}
 
 	void AlignPositionWithPlayer() {
@@ -60,20 +54,14 @@ public class MapManager : MonoBehaviour {
 		this.transform.position = newPosition;
 	}
 
-	void SpawnHazard() {
-        var rndIndex = Random.Range(0, _knobs.hazardPrefabs.Length);
-        SpawnObject(_knobs.hazardPrefabs[rndIndex]);
+    void SpawnObject() {
+        if (_knobs.spawnableObjectPrefabs.Length == 0) return;
+
+        var rndIndex = Random.Range(0, _knobs.spawnableObjectPrefabs.Length);
+        SpawnObject(_knobs.spawnableObjectPrefabs[rndIndex]);
 
 		// get time to spawn next hazard
-        _timeUntilNextHazardSpawn = GetNextSpawnTime(_knobs.defaultHazardSpawnRate);
-	}
-
-	void SpawnBonus() {
-        var rndIndex = Random.Range(0, _knobs.bonusPrefabs.Length);
-        SpawnObject(_knobs.bonusPrefabs[rndIndex]);
-
-		// get time to spawn next hazard
-        _timeUntilNextBonusSpawn = GetNextSpawnTime(_knobs.defaultBonusSpawnRate);
+        _timeUntilNextObjectSpawn = GetNextSpawnTime(_knobs.defaultObjectSpawnRate);
 	}
 
     void SpawnObject(ActorManager prefab) {
