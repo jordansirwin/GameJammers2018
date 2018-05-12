@@ -26,6 +26,11 @@ public class GameInputManager : MonoSingleton<GameInputManager>
 
     private void Update()
     {
+        // Testing hack
+        if(Input.GetKeyDown(KeyCode.Escape)) {
+            GameManager.Instance.GameOver();
+        }
+
         LeftInputActive = false;
         RightInputActive = false;
 
