@@ -12,6 +12,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private float _speedModifyX = 0;
     private float _speedModifyY = 1;
+    private float _baseSpeed;
 
     [Tooltip("Link to KnobsForKevin for well-tuned properties")]
     [SerializeField]
@@ -24,9 +25,9 @@ public class GameManager : MonoSingleton<GameManager>
     private float _endGameTime;
     private GameStates _currentGameState;
 
-    public float BaseSpeed { get { return _knobs.baseSpeed; } }
-    public float GameSpeedX { get { return _speedModifyX * _knobs.baseSpeed; } }
-    public float GameSpeedY { get { return _speedModifyY * _knobs.baseSpeed; } }
+    public float BaseSpeed { get { return _baseSpeed; } }
+    public float GameSpeedX { get { return _speedModifyX * _baseSpeed; } }
+    public float GameSpeedY { get { return _speedModifyY * _baseSpeed; } }
 
     public float Score { get { return CalculateScore(); } }
 
@@ -44,7 +45,14 @@ public class GameManager : MonoSingleton<GameManager>
     {
         _speedModifyX = 0;
         _speedModifyY = 1;
+        _baseSpeed = _knobs.baseSpeed;
+
+        AvalancheManager.Instance.Initialize();
+        
         _startGameTime = Time.time;
+
+        StartCoroutine(SpeedUpdateRoutine());
+        StartCoroutine(SizeUpdateRoutine());
     }
 
     public void SetSpeedModifiers(float x, float y)
@@ -85,6 +93,24 @@ public class GameManager : MonoSingleton<GameManager>
         return _endGameTime - _startGameTime;
     }
 
+    IEnumerator SpeedUpdateRoutine()
+    {
+        while (true) // yolo
+        {
+            _baseSpeed += _knobs.speedIncreaseAmount;
+            yield return new WaitForSeconds(_knobs.speedIncreaseRate);
+        }
+    }
+
+    IEnumerator SizeUpdateRoutine()
+    {
+        while (true) // yolo
+        {
+            AvalancheManager.Instance.ModifySize(_knobs.avalancheSizeIncreaseAmount);
+            yield return new WaitForSeconds(_knobs.avalancheSizeIncreaseRate);
+        }
+    }
+
     public GameStates GetGameState() {
         return _currentGameState;
     }
@@ -96,6 +122,8 @@ public class GameManager : MonoSingleton<GameManager>
                 _uiManager.HideGameOver();
                 _uiManager.ShowGameplayScreen();
                 _uiManager.ShowGameplayTutorialScreen();
+                StopCoroutine(SpeedUpdateRoutine());
+                StopCoroutine(SizeUpdateRoutine());
                 break;
             case GameStates.Playing:
                 _uiManager.HideMainMenu();
@@ -110,6 +138,8 @@ public class GameManager : MonoSingleton<GameManager>
                 _uiManager.ShowGameOver();
                 _uiManager.HideGameplayScreen();
                 _uiManager.HideGameplayTutorialScreen();
+                StopCoroutine(SpeedUpdateRoutine());
+                StopCoroutine(SizeUpdateRoutine());
                 break;
         }
 

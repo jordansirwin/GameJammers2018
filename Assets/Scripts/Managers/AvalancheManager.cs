@@ -29,8 +29,15 @@ public class AvalancheManager : MonoSingleton<AvalancheManager>
         Initialize();
     }
 
-    private void Initialize()
+    public void Initialize()
     {
+        if (_avalancheObject != null)
+        {
+            Destroy(_avalancheObject);
+            _avalancheObject = null;
+        }
+
+        _size = 0;
         _maxY = _topMostPosition.transform.position.y;
 
         var initialPosition = _startPosition.transform.position;

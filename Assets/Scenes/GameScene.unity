@@ -1478,6 +1478,10 @@ MonoBehaviour:
   baseSpeed: 5
   encroachSpeedMultiplier: 0.5
   playerTurnSpeedModifier: {x: 0.5, y: 1}
+  speedIncreaseRate: 1
+  speedIncreaseAmount: 0.01
+  avalancheSizeIncreaseRate: 1
+  avalancheSizeIncreaseAmount: 0.5
   defaultHazardSpawnRate: 10
   defaultBonusSpawnRate: 10
   hazardPrefabs:
