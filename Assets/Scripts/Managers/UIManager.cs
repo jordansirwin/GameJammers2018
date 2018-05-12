@@ -48,6 +48,12 @@ public class UIManager : MonoBehaviour {
     [Tooltip("Link to panel for Score Screen Menu")]
     [SerializeField]
     private Transform _gameOverPanel;
+    [Tooltip("Link to text label showing the avalanche size")]
+    [SerializeField]
+    private Text _avalancheSizeText;
+    [Tooltip("Link to text label showing player's ride time")]
+    [SerializeField]
+    private Text _rideTimeText;
 
 
     private int _goalScoreIndex = 0;
@@ -58,17 +64,25 @@ public class UIManager : MonoBehaviour {
 	}
 
     void UpdateScore () {
-        // if not playing the game, do nothing
-        if (_gameManager.GetGameState() != GameManager.GameStates.Playing)
-        {
-            return;
-        }
 
         // get current score
         var currentScore = _gameManager.CalculateScore();
-        _playerScoreText.text = currentScore.ToString();
-        _goalText.text = GetNextGoalScore(currentScore).ToString();
-        _timeText.text = ((int)_gameManager.CalculateElapsedTimeSinceGameStart()).ToString() + "s";
+
+        // gameplay screen
+        switch(_gameManager.GetGameState()) {
+            case GameManager.GameStates.MainMenu:
+                // no score tracking in main menu
+                return;
+            case GameManager.GameStates.Playing:
+                _playerScoreText.text = currentScore.ToString();
+                _goalText.text = GetNextGoalScore(currentScore).ToString();
+                _timeText.text = ((int)_gameManager.CalculateElapsedTimeSinceGameStart()).ToString() + "s";
+                break;
+            case GameManager.GameStates.GameOver:
+                _avalancheSizeText.text = currentScore.ToString();
+                _rideTimeText.text = ((int)_gameManager.CalculateElapsedTimeSinceGameStart()).ToString() + "s";
+                break;
+        }
 	}
 
     private int GetNextGoalScore(int currentScore)

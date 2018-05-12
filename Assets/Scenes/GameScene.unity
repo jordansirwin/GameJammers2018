@@ -705,6 +705,8 @@ MonoBehaviour:
   _mainMenuPanel: {fileID: 670398401}
   _gameplayTutorialPanel: {fileID: 687346143}
   _gameOverPanel: {fileID: 133917578}
+  _avalancheSizeText: {fileID: 935758035}
+  _rideTimeText: {fileID: 733335985}
 --- !u!114 &629821998
 MonoBehaviour:
   m_ObjectHideFlags: 0
