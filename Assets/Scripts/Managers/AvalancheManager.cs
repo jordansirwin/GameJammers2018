@@ -7,7 +7,7 @@ public class AvalancheManager : MonoSingleton<AvalancheManager>
     [SerializeField] private GameObject _avalanchePrefab;
     [SerializeField] private GameObject _avalanceContainer;
     [SerializeField] private GameObject _topMostPosition;
-    [SerializeField] private GameObject _bottomMostPosition;
+    [SerializeField] private GameObject _startPosition;
 
     [Tooltip("Link to KnobsForKevin for well-tuned properties")]
     [SerializeField] private KnobsForKevin _knobs;
@@ -15,14 +15,13 @@ public class AvalancheManager : MonoSingleton<AvalancheManager>
     [Tooltip("How far Avalanche can be from target position to be acceptably close.")]
     [SerializeField] private float _moveMarginOfError = 0.001f;
 
-    private float _minY;
     private float _maxY;
 
     private GameObject _avalancheObject;
     private Coroutine _moveToEncroachmentRoutine;
     private Vector3 _targetEncroachPosition;
 
-    private float _size;
+    [SerializeField] private float _size;
     public float Size { get { return _size; } }
 
     private void Start()
@@ -32,11 +31,9 @@ public class AvalancheManager : MonoSingleton<AvalancheManager>
 
     private void Initialize()
     {
-        _minY = _bottomMostPosition.transform.position.y;
         _maxY = _topMostPosition.transform.position.y;
 
-        var initialPosition = _topMostPosition.transform.position;
-        initialPosition.y = Mathf.Lerp(_minY, _maxY, 0.5f); ;
+        var initialPosition = _startPosition.transform.position;
 
         _avalancheObject = GameObject.Instantiate<GameObject>(_avalanchePrefab, initialPosition, Quaternion.identity, _avalanceContainer.transform);
         _targetEncroachPosition = _avalancheObject.transform.position;
@@ -53,7 +50,7 @@ public class AvalancheManager : MonoSingleton<AvalancheManager>
         // TODO: Scale this rather than directly modifying Y?
         float newY = _targetEncroachPosition.y + amount;
 
-        _targetEncroachPosition.y = Mathf.Clamp(newY, _minY, _maxY);
+        _targetEncroachPosition.y = Mathf.Min(_maxY, newY);
 
         MoveToTarget();
     }
