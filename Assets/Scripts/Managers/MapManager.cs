@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MapManager : MonoBehaviour {
-
+    
 	public GameObject player;
 	
 	[Tooltip("Farthest left point to spawn a hazard/bonus")]
@@ -36,6 +36,11 @@ public class MapManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        // if not playing the game, do nothing
+        if(_gameManager.GetGameState() != GameManager.GameStates.Playing) {
+            return;
+        }
+
 		// stay aligned with player so we always spawn objects under them
 		AlignPositionWithPlayer();
 
