@@ -142,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _onCollisionParticleSystem: {fileID: 0}
   _onCollisionAudioClip: {fileID: 0}
-  _isHazard: 0
+  _isHazard: 1
   _avalancheEncroachmentAmount: -2
   _playerFallbackAmount: 2
 --- !u!136 &136902337279636468

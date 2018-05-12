@@ -14,6 +14,18 @@ public class KnobsForKevin : MonoSingleton<KnobsForKevin>
     [Tooltip("Speed adjustements when the player turnes. 1f is equal to current baseSpeed.")]
     public Vector2 playerTurnSpeedModifier = new Vector2(0.5f, 1f);
 
+    [Tooltip("Default rate (in seconds) to increase the game speed")]
+    public float speedIncreaseRate = 1f;
+
+    [Tooltip("How much the game speed should increase at each speedIncreaseRate tick")]
+    public float speedIncreaseAmount = 0.5f;
+
+    [Tooltip("Default rate (in seconds) to increase the avalanche size")]
+    public float avalancheSizeIncreaseRate = 1f;
+
+    [Tooltip("How much the avalanche size should increase at each avalancheSizeIncreaseRate tick")]
+    public float avalancheSizeIncreaseAmount = 0.5f;
+
     [Header("Spawn Object Knobs")]
 
     [Tooltip("Default rate (in seconds) to spawn hazards")]
