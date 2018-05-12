@@ -25,7 +25,7 @@ public class AvalancheVisual : MonoBehaviour
             {
                 if (!layer.Particles.isPlaying)
                 {
-                    Debug.Log("Start playing " + layer.Particles);
+                    //Debug.Log("Start playing " + layer.Particles);
                     layer.Particles.Play();
                 }
 
@@ -42,6 +42,10 @@ public class AvalancheVisual : MonoBehaviour
                         SetEmissionRate(layer.Particles, Mathf.Lerp(0, layer.MaxEmission, step));
                     }
                 }
+            }
+            if(layer.UseStopAtSize && _size >= layer.StopAtSize && layer.Particles.isPlaying)
+            {
+                layer.Particles.Stop();
             }
         }
     }
@@ -61,5 +65,7 @@ public class AvalancheVisual : MonoBehaviour
         [SerializeField] public float StartAtSize;
         [SerializeField] public float MaxAtSize;
         [SerializeField] public float MaxEmission;
+        [SerializeField] public bool UseStopAtSize;
+        [SerializeField] public float StopAtSize;
     }
 }
