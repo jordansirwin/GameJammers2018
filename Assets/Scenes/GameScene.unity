@@ -2058,7 +2058,8 @@ Prefab:
       propertyPath: _knobs
       value: 
       objectReference: {fileID: 978890832}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 54515774522448534, guid: c032ae69238be974986afc65091eff78, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c032ae69238be974986afc65091eff78, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1477582761
