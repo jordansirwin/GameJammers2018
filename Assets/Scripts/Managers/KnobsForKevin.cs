@@ -11,6 +11,9 @@ public class KnobsForKevin : MonoSingleton<KnobsForKevin>
     [Tooltip("The avalanche and player move speeds will come from the base speed multiplied by this value.")]
     public float encroachSpeedMultiplier = 0.1f;
 
+    [Tooltip("Speed adjustements when the player turnes. 1f is equal to current baseSpeed.")]
+    public Vector2 playerTurnSpeedModifier = new Vector2(0.5f, 1f);
+
     [Header("Spawn Object Knobs")]
 
     [Tooltip("Default rate (in seconds) to spawn hazards")]
@@ -26,15 +29,8 @@ public class KnobsForKevin : MonoSingleton<KnobsForKevin>
     public ActorManager[] bonusPrefabs;
 
 
-	// Use this for initialization
-	void Start()
-	{
+    [Header("Score Knobs")]
 
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-			
-	}
+    [Tooltip("Array of scores to reach for mighty bonus hottness")]
+    public int[] goalScores;
 }
