@@ -84,6 +84,11 @@ public class GameManager : MonoSingleton<GameManager>
         return (int)currentSize;
     }
 
+    public void AddBonusScore(int bonusAmount) {
+        AvalancheManager.Instance.ModifySize(bonusAmount);
+        _uiManager.ShowBonusScore(bonusAmount);
+    }
+
     public float CalculateElapsedTimeSinceGameStart() {
         // if we're playing, keep updating end time
         if (_currentGameState == GameStates.Playing)

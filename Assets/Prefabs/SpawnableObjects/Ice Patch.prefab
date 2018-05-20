@@ -156,3 +156,4 @@ MonoBehaviour:
   _onCollisionAudioClip: {fileID: 0}
   _avalancheEncroachmentAmount: 2
   _playerFallbackAmount: -2
+  _bonusPointsAwarded: 0

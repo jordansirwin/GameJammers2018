@@ -18,13 +18,17 @@ public class ActorManager : MonoBehaviour
     [SerializeField]
     private AudioClip _onCollisionAudioClip;
 
-    [Tooltip("If player hits this hazard, how much should the avalanche move (postive numbers move avalanche towards player, negative away")]
+    [Tooltip("If player hits this object, how much should the avalanche move (postive numbers move avalanche towards player, negative away")]
     [SerializeField]
-    private float _avalancheEncroachmentAmount = -2f;
+    private float _avalancheEncroachmentAmount = 0f;
 
-    [Tooltip("If player hits this hazard, how much should the player move (postive numbers move player away from avalanche, negative towards")]
+    [Tooltip("If player hits this object, how much should the player move (postive numbers move player away from avalanche, negative towards")]
     [SerializeField]
-    private float _playerFallbackAmount = 2f;
+    private float _playerFallbackAmount = 0f;
+
+    [Tooltip("If player hits this object, how much should the player move (postive numbers move player away from avalanche, negative towards")]
+    [SerializeField]
+    private int _bonusPointsAwarded = 0;
 
 	private void Start()
 	{
@@ -80,6 +84,11 @@ public class ActorManager : MonoBehaviour
         }
 
         Despawn();
+
+        // award bonus points
+        if(_bonusPointsAwarded != 0) {
+            _gameManager.AddBonusScore(_bonusPointsAwarded);
+        }
 
         // move avalanche/player if required
         if (System.Math.Abs(_avalancheEncroachmentAmount) > float.Epsilon)

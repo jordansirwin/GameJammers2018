@@ -162,6 +162,7 @@ MonoBehaviour:
   _onCollisionAudioClip: {fileID: 0}
   _avalancheEncroachmentAmount: -1
   _playerFallbackAmount: 1
+  _bonusPointsAwarded: 5
 --- !u!136 &136704947530689470
 CapsuleCollider:
   m_ObjectHideFlags: 1

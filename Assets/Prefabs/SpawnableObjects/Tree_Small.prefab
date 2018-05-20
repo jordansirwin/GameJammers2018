@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4354804430543708}
+  - component: {fileID: 114249987630521172}
   - component: {fileID: 54270843211661400}
   - component: {fileID: 136339994112497104}
-  - component: {fileID: 114249987630521172}
   m_Layer: 0
   m_Name: Tree_Small
   m_TagString: Untagged
@@ -144,6 +144,7 @@ MonoBehaviour:
   _onCollisionAudioClip: {fileID: 0}
   _avalancheEncroachmentAmount: -1
   _playerFallbackAmount: 1
+  _bonusPointsAwarded: 0
 --- !u!136 &136339994112497104
 CapsuleCollider:
   m_ObjectHideFlags: 1

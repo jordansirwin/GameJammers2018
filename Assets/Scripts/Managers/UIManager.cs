@@ -22,6 +22,13 @@ public class UIManager : MonoBehaviour {
     [SerializeField]
     private Transform _gameplayPanel;
 
+    [Tooltip("Link to text label showing bonus points scored")]
+    [SerializeField]
+    private Text _bonusText;
+    [Tooltip("How many seconds until Bonus Text fades out")]
+    [SerializeField]
+    private float _bonusTextFadeInSec;
+
     [Tooltip("Link to text label showing next goal score")]
     [SerializeField]
     private Text _goalText;
@@ -96,6 +103,27 @@ public class UIManager : MonoBehaviour {
         }
 
         return _knobs.goalScores[_goalScoreIndex];
+    }
+
+    public void ShowBonusScore(int bonusAmount) {
+        // assign bonus text
+        _bonusText.text = "BONUS!";
+        // reset alpha to make it visible
+        var c = _bonusText.color;
+        _bonusText.color = new Color(c.r, c.g, c.b, 1.0f);
+        // fade out
+        StartCoroutine(FlashBonusScore());
+    }
+
+    private IEnumerator FlashBonusScore() {
+        // fade out over a period of time by reducing the alpha
+        const float fadeDelay = 0.25f;
+        var fadeAmount = 1f / (_bonusTextFadeInSec/fadeDelay);
+        while (_bonusText.color.a > 0) {
+            var c = _bonusText.color;
+            _bonusText.color = new Color(c.r, c.g, c.b, c.a - fadeAmount);
+            yield return new WaitForSeconds(fadeDelay);
+        }
     }
 
     public void ShowMainMenu() {
