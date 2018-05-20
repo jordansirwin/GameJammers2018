@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4145441753430292}
+  - component: {fileID: 114497661346278046}
   - component: {fileID: 54434392818319350}
   - component: {fileID: 136342061003785376}
-  - component: {fileID: 114497661346278046}
   m_Layer: 0
   m_Name: Tree_Big
   m_TagString: Untagged
@@ -142,9 +142,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _onCollisionParticleSystem: {fileID: 0}
   _onCollisionAudioClip: {fileID: 0}
-  _isHazard: 1
   _avalancheEncroachmentAmount: -2
   _playerFallbackAmount: 2
+  _bonusPointsAwarded: 0
 --- !u!136 &136342061003785376
 CapsuleCollider:
   m_ObjectHideFlags: 1
