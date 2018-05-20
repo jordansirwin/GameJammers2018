@@ -78,7 +78,7 @@ public class MapManager : MonoBehaviour {
 		// set new spawn time
         // as player speed increases, spawn faster
 		var playerSpeed = _gameManager.GameSpeedY;
-		return defaultRate - playerSpeed;
+        return Mathf.Max(.5f, defaultRate - playerSpeed/2);
 	}
 
 	Vector3 GetSpawnPosition() {
