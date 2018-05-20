@@ -10,9 +10,6 @@ public class ScrollSnow : MonoBehaviour {
 
     private Renderer _renderer;
 
-    public float ScrollX = 0.5f;
-    //public float ScrollY = 0.5f;
-
 	private void Start()
 	{
         _renderer = GetComponent<Renderer>();
@@ -22,7 +19,7 @@ public class ScrollSnow : MonoBehaviour {
     float OffsetX;
     float OffsetY;
 	// Update is called once per frame
-	void Update () {
+    void Update () {
         OffsetX += Time.deltaTime * -gameManager.GameSpeedX / 20;
         OffsetY += Time.deltaTime * -gameManager.GameSpeedY / 30;
         _renderer.material.mainTextureOffset = new Vector2(OffsetX, OffsetY);

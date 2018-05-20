@@ -62,8 +62,7 @@ public class ActorManager : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void HandleHazardCollision() {
-
+    private void HandleObjectCollision() {
         if (_onCollisionParticleSystem != null)
         {
             // clone it so we can destroy our object without stopping the pfx
@@ -96,6 +95,6 @@ public class ActorManager : MonoBehaviour
 
         Debug.Log("Trigger: " + gameObject.name + " triggered by " + other.gameObject.name);
 
-        HandleHazardCollision();
+        HandleObjectCollision();
 	}
 }
