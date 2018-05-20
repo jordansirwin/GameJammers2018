@@ -10,6 +10,8 @@ public class ActorManager : MonoBehaviour
     private AvalancheManager _avalancheManager;
     private GameManager _gameManager;
 
+    [Header("Visual Effects")]
+
     [Tooltip("Particle system to play when a collision with this object happens")]
     [SerializeField]
     private ParticleSystem _onCollisionParticleSystem;
@@ -18,8 +20,11 @@ public class ActorManager : MonoBehaviour
     [SerializeField]
     private AudioSource _onCollisionAudioSource;
 
+    [Tooltip("Animation with clip to play when a collision with this object happens")]
     [SerializeField]
     private Animation _onCollisionAnimation;
+
+    [Header("Gameplay Effects")]
 
     [Tooltip("If player hits this object, how much should the avalanche move (postive numbers move avalanche towards player, negative away")]
     [SerializeField]
@@ -48,7 +53,6 @@ public class ActorManager : MonoBehaviour
         _despawnPosition = position;
     }
 
-	// Update is called once per frame
 	void Update()
 	{
         if(transform.position.y >= _despawnPosition.y + 10) {
@@ -76,10 +80,6 @@ public class ActorManager : MonoBehaviour
         {
             effectTime = Mathf.Max(effectTime, _onCollisionParticleSystem.main.duration);
             _onCollisionParticleSystem.Play();
-            // clone it so we can destroy our object without stopping the pfx
-            //var pfx = Instantiate(_onCollisionParticleSystem);
-            //pfx.Play();
-            //Destroy(pfx, 5f);
         }
 
         if (_onCollisionAudioSource != null)
@@ -93,10 +93,6 @@ public class ActorManager : MonoBehaviour
                 effectTime = Mathf.Max(effectTime, _onCollisionAudioSource.clip.length);
                 _onCollisionAudioSource.Play();
             }
-            // clone it so we can destroy our object without stopping the pfx
-            //var sfx = Instantiate(_onCollisionParticleSystem);
-            //sfx.Play();
-            //Destroy(sfx, 5f);
         }
 
         if(_onCollisionAnimation != null)
@@ -112,7 +108,7 @@ public class ActorManager : MonoBehaviour
             }
         }
 
-        // award bonus points
+        // Award bonus points
         if(_bonusPointsAwarded != 0) {
             _gameManager.AddBonusScore(_bonusPointsAwarded);
         }
@@ -126,6 +122,7 @@ public class ActorManager : MonoBehaviour
         // Wait for effect(s) to finish
         yield return new WaitForSeconds(effectTime);
 
+        // Cleanup
         Despawn();
     }
 
