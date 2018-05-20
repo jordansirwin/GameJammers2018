@@ -11,6 +11,7 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] private float _moveMarginOfError = 0.001f;
 
     private float _minY;
+    private float _defaultY;
     private Coroutine _moveToFallbackRoutine;
     private Vector3 _targetFallbackPosition;
 
@@ -22,8 +23,33 @@ public class PlayerCharacter : MonoBehaviour
 
     private void Start()
     {
-        CurrentDirection = PlayerDirection.Straight;
         _minY = _bottomMostPosition.transform.position.y;
+        _defaultY = gameObject.transform.position.y;
+
+        GameManager.Instance.OnGameStateChange.AddListener(OnGameStateChange);
+
+        Initialize();
+    }
+
+    void OnGameStateChange(GameState newState)
+    {
+        if (newState == GameState.Playing)
+            Initialize();
+    }
+
+    public void Initialize()
+    {
+        CurrentDirection = PlayerDirection.Straight;
+
+        if (_moveToFallbackRoutine != null)
+        {
+            StopCoroutine(_moveToFallbackRoutine);
+            _moveToFallbackRoutine = null;
+        }
+
+        var startPos = gameObject.transform.position;
+        startPos.y = _defaultY;
+        gameObject.transform.position = startPos;
     }
 
     private void Update()
