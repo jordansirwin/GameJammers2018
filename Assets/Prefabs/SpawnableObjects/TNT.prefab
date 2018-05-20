@@ -37,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4421709762796268}
   - component: {fileID: 136730606471921796}
+  - component: {fileID: 111143766881322648}
   m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
@@ -397,7 +398,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1123654939143298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.47614744, y: -12.978039, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4421709762796268}
@@ -1051,6 +1052,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!111 &111143766881322648
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1080697976700288}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: d699b94b89b3d64449235f9de864ffcb, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: d699b94b89b3d64449235f9de864ffcb, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114436233170187398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1063,7 +1079,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onCollisionParticleSystem: {fileID: 0}
-  _onCollisionAudioClip: {fileID: 0}
+  _onCollisionAudioSource: {fileID: 0}
+  _onCollisionAnimation: {fileID: 111143766881322648}
   _avalancheEncroachmentAmount: 0
   _playerFallbackAmount: 0
   _bonusPointsAwarded: 10

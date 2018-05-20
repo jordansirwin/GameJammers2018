@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: SnowmanAnim
+  m_Name: JumpAndFall
   serializedVersion: 6
   m_Legacy: 1
   m_Compressed: 0
@@ -44,13 +44,13 @@ AnimationClip:
         tangentMode: 0
       - serializedVersion: 2
         time: 0.33333334
-        value: {x: 0, y: 1.814815, z: -5}
-        inSlope: {x: 0, y: 9.333333, z: 0}
-        outSlope: {x: 0, y: 9.333333, z: 0}
+        value: {x: 0, y: 3.8888893, z: -15}
+        inSlope: {x: 0, y: 19.999998, z: 0}
+        outSlope: {x: 0, y: 19.999998, z: 0}
         tangentMode: 0
       - serializedVersion: 2
         time: 1
-        value: {x: 0, y: 7, z: 0}
+        value: {x: 0, y: 15, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -189,7 +189,7 @@ AnimationClip:
         tangentMode: 136
       - serializedVersion: 2
         time: 1
-        value: 7
+        value: 15
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -211,7 +211,7 @@ AnimationClip:
         tangentMode: 136
       - serializedVersion: 2
         time: 0.33333334
-        value: -5
+        value: -15
         inSlope: 0
         outSlope: 0
         tangentMode: 136
