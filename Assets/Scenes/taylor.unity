@@ -797,7 +797,7 @@ MonoBehaviour:
   avalancheSizeIncreaseAmount: 0.5
   defaultObjectSpawnRate: 10
   spawnableObjectPrefabs:
-  - {fileID: 114436233170187398, guid: 101b1dca0fdf34458adf19dc14742c6e, type: 2}
+  - {fileID: 114325999671857870, guid: d1eb657e072c445f3a7053d2aae23fb3, type: 2}
   goalScores: 0a00000064000000fa000000f4010000e8030000
 --- !u!4 &978890833
 Transform:

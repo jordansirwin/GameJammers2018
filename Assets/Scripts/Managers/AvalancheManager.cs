@@ -26,7 +26,15 @@ public class AvalancheManager : MonoSingleton<AvalancheManager>
 
     private void Start()
     {
+        GameManager.Instance.OnGameStateChange.AddListener(OnGameStateChange);
+
         Initialize();
+    }
+
+    void OnGameStateChange(GameState newState)
+    {
+        if(newState == GameState.Playing)
+            Initialize();
     }
 
     public void Initialize()

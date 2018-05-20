@@ -1,15 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    public enum GameStates {
-        MainMenu,
-        Playing,
-        GameOver
-    }
-
     private float _speedModifyX = 0;
     private float _speedModifyY = 1;
     private float _baseSpeed;
@@ -23,13 +18,18 @@ public class GameManager : MonoSingleton<GameManager>
 
     private float _startGameTime;
     private float _endGameTime;
-    private GameStates _currentGameState;
+    private GameState _currentGameState;
+
+    private Coroutine _speedRoutine;
+    private Coroutine _sizeRoutine;
 
     public float BaseSpeed { get { return _baseSpeed; } }
     public float GameSpeedX { get { return _speedModifyX * _baseSpeed; } }
     public float GameSpeedY { get { return _speedModifyY * _baseSpeed; } }
 
     public float Score { get { return CalculateScore(); } }
+
+    public GameStateEvent OnGameStateChange = new GameStateEvent();
 
     private void Start()
     {
@@ -38,7 +38,7 @@ public class GameManager : MonoSingleton<GameManager>
         //// HACK: Should be called by menu interactions
         //StartNewGame();
 
-        ChangeGameState(GameStates.MainMenu);
+        ChangeGameState(GameState.MainMenu);
         _baseSpeed = _knobs.baseSpeed;
     }
 
@@ -48,12 +48,12 @@ public class GameManager : MonoSingleton<GameManager>
         _speedModifyY = 1;
         _baseSpeed = _knobs.baseSpeed;
 
-        AvalancheManager.Instance.Initialize();
-        
         _startGameTime = Time.time;
 
-        StartCoroutine(SpeedUpdateRoutine());
-        StartCoroutine(SizeUpdateRoutine());
+        StopAdjustmentRoutines();
+
+        _speedRoutine = StartCoroutine(SpeedUpdateRoutine());
+        _sizeRoutine = StartCoroutine(SizeUpdateRoutine());
     }
 
     public void SetSpeedModifiers(float x, float y)
@@ -64,11 +64,11 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void StartNewGame() {
         Debug.Log("StartNewGame");
-        ChangeGameState(GameStates.Playing);
+        ChangeGameState(GameState.Playing);
     }
 
     public void GameOver() {
-        ChangeGameState(GameStates.GameOver);
+        ChangeGameState(GameState.GameOver);
     }
 
     public void ExitGame() {
@@ -91,7 +91,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public float CalculateElapsedTimeSinceGameStart() {
         // if we're playing, keep updating end time
-        if (_currentGameState == GameStates.Playing)
+        if (_currentGameState == GameState.Playing)
         {
             _endGameTime = Time.time;
         }
@@ -117,37 +117,51 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
-    public GameStates GetGameState() {
+    public GameState GetGameState() {
         return _currentGameState;
     }
 
-    private void ChangeGameState(GameStates newState) {
+    private void StopAdjustmentRoutines()
+    {
+        if (_speedRoutine != null)
+        {
+            StopCoroutine(_speedRoutine);
+            _speedRoutine = null;
+        }
+        if (_sizeRoutine != null)
+        {
+            StopCoroutine(_sizeRoutine);
+            _sizeRoutine = null;
+        }
+    }
+
+    private void ChangeGameState(GameState newState) {
         switch(newState) {
-            case GameStates.MainMenu:
+            case GameState.MainMenu:
                 _uiManager.ShowMainMenu();
                 _uiManager.HideGameOver();
                 _uiManager.ShowGameplayScreen();
                 _uiManager.ShowGameplayTutorialScreen();
-                StopCoroutine(SpeedUpdateRoutine());
-                StopCoroutine(SizeUpdateRoutine());
+                StopAdjustmentRoutines();
                 break;
-            case GameStates.Playing:
+            case GameState.Playing:
                 _uiManager.HideMainMenu();
                 _uiManager.HideGameOver();
                 _uiManager.ShowGameplayScreen();
                 _uiManager.HideGameplayTutorialScreen();
                 IntitializeNewGame();
                 break;
-            case GameStates.GameOver:
+            case GameState.GameOver:
                 // main menu and game over should overlap :D
                 _uiManager.ShowMainMenu();
                 _uiManager.ShowGameOver();
                 _uiManager.HideGameplayScreen();
                 _uiManager.HideGameplayTutorialScreen();
-                StopCoroutine(SpeedUpdateRoutine());
-                StopCoroutine(SizeUpdateRoutine());
+                StopAdjustmentRoutines();
                 break;
         }
+
+        OnGameStateChange.Invoke(newState);
 
         _currentGameState = newState;
     }

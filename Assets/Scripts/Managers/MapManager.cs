@@ -36,7 +36,7 @@ public class MapManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // if not playing the game, do nothing
-        if(_gameManager.GetGameState() != GameManager.GameStates.Playing) {
+        if(_gameManager.GetGameState() != GameState.Playing) {
             return;
         }
 

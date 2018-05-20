@@ -77,15 +77,15 @@ public class UIManager : MonoBehaviour {
 
         // gameplay screen
         switch(_gameManager.GetGameState()) {
-            case GameManager.GameStates.MainMenu:
+            case GameState.MainMenu:
                 // no score tracking in main menu
                 return;
-            case GameManager.GameStates.Playing:
+            case GameState.Playing:
                 _playerScoreText.text = currentScore.ToString();
                 _goalText.text = GetNextGoalScore(currentScore).ToString();
                 _timeText.text = ((int)_gameManager.CalculateElapsedTimeSinceGameStart()).ToString() + "s";
                 break;
-            case GameManager.GameStates.GameOver:
+            case GameState.GameOver:
                 _avalancheSizeText.text = currentScore.ToString();
                 _rideTimeText.text = ((int)_gameManager.CalculateElapsedTimeSinceGameStart()).ToString() + "s";
                 break;
