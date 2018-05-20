@@ -14,9 +14,12 @@ public class ActorManager : MonoBehaviour
     [SerializeField]
     private ParticleSystem _onCollisionParticleSystem;
 
-    [Tooltip("Audio to play when a collision with this object happens")]
+    [Tooltip("Audio source with clip to play when a collision with this object happens")]
     [SerializeField]
-    private AudioClip _onCollisionAudioClip;
+    private AudioSource _onCollisionAudioSource;
+
+    [SerializeField]
+    private Animation _onCollisionAnimation;
 
     [Tooltip("If player hits this hazard, how much should the avalanche move (postive numbers move avalanche towards player, negative away")]
     [SerializeField]
@@ -62,39 +65,68 @@ public class ActorManager : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void HandleObjectCollision() {
+    IEnumerator HandleObjectCollision() {
+        float effectTime = 0;
+
         if (_onCollisionParticleSystem != null)
         {
+            effectTime = Mathf.Max(effectTime, _onCollisionParticleSystem.main.duration);
+            _onCollisionParticleSystem.Play();
             // clone it so we can destroy our object without stopping the pfx
-            var pfx = Instantiate(_onCollisionParticleSystem);
-            pfx.Play();
-            Destroy(pfx, 5f);
+            //var pfx = Instantiate(_onCollisionParticleSystem);
+            //pfx.Play();
+            //Destroy(pfx, 5f);
         }
 
-        if (_onCollisionAudioClip != null)
+        if (_onCollisionAudioSource != null)
         {
+            if (_onCollisionAudioSource.clip == null)
+            {
+                Debug.LogError("Spawnable Audio Source has no clip attached!/nRemove Audio Source if audio effect not intended.");
+            }
+            else
+            {
+                effectTime = Mathf.Max(effectTime, _onCollisionAudioSource.clip.length);
+                _onCollisionAudioSource.Play();
+            }
             // clone it so we can destroy our object without stopping the pfx
-            var sfx = Instantiate(_onCollisionParticleSystem);
-            sfx.Play();
-            Destroy(sfx, 5f);
+            //var sfx = Instantiate(_onCollisionParticleSystem);
+            //sfx.Play();
+            //Destroy(sfx, 5f);
         }
 
-        Despawn();
+        if(_onCollisionAnimation != null)
+        {
+            if(_onCollisionAnimation.clip == null)
+            {
+                Debug.LogError("Spawnable Animation has no clip attached!/nRemove Animation if animation effect not intended.");
+            }
+            else
+            {
+                effectTime = Mathf.Max(effectTime, _onCollisionAnimation.clip.length);
+                _onCollisionAnimation.Play();
+            }
+        }
 
         // move avalanche/player if required
         if (System.Math.Abs(_avalancheEncroachmentAmount) > float.Epsilon)
             _avalancheManager.ModifyEncroachment(_avalancheEncroachmentAmount);
         if (System.Math.Abs(_playerFallbackAmount) > float.Epsilon)
             _playerCharacter.ModifyFallback(_playerFallbackAmount);
+
+        // Wait for effect(s) to finish
+        yield return new WaitForSeconds(effectTime);
+
+        Despawn();
     }
 
-	private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
 	{
         // only trigger if player
         if (other.tag != "Player") return;
 
         Debug.Log("Trigger: " + gameObject.name + " triggered by " + other.gameObject.name);
 
-        HandleObjectCollision();
+        StartCoroutine(HandleObjectCollision());
 	}
 }
