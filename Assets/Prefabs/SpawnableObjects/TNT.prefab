@@ -69,8 +69,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4360416696921446}
-  - component: {fileID: 54351373237097574}
   - component: {fileID: 114436233170187398}
+  - component: {fileID: 54351373237097574}
   m_Layer: 0
   m_Name: TNT
   m_TagString: Untagged
@@ -1066,6 +1066,7 @@ MonoBehaviour:
   _onCollisionAudioClip: {fileID: 0}
   _avalancheEncroachmentAmount: 0
   _playerFallbackAmount: 0
+  _bonusPointsAwarded: 10
 --- !u!136 &136730606471921796
 CapsuleCollider:
   m_ObjectHideFlags: 1
