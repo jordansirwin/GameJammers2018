@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 4881148370392952}
   - component: {fileID: 33058964037705584}
   - component: {fileID: 23672126552244170}
+  - component: {fileID: 111478225812266728}
   m_Layer: 0
   m_Name: Tree4Large
   m_TagString: Untagged
@@ -53,8 +54,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1750031809402644}
   m_LocalRotation: {x: -0.2847621, y: -0.018268976, z: 0.052701276, w: 0.95697415}
-  m_LocalPosition: {x: 5.1148534, y: -3.2602465, z: -4.53}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.010000001}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4881148370392952}
   m_Father: {fileID: 0}
@@ -68,7 +69,7 @@ Transform:
   m_GameObject: {fileID: 1790128811790070}
   m_LocalRotation: {x: -0, y: -0, z: -4.6566123e-10, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 4145441753430292}
   m_RootOrder: 0
@@ -129,6 +130,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!111 &111478225812266728
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1790128811790070}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: d699b94b89b3d64449235f9de864ffcb, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: d699b94b89b3d64449235f9de864ffcb, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114497661346278046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,7 +157,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onCollisionParticleSystem: {fileID: 0}
-  _onCollisionAudioClip: {fileID: 0}
+  _onCollisionAudioSource: {fileID: 0}
+  _onCollisionAnimation: {fileID: 111478225812266728}
   _avalancheEncroachmentAmount: -2
   _playerFallbackAmount: 2
   _bonusPointsAwarded: 0
@@ -154,7 +171,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 50
-  m_Height: 1000
+  m_Radius: 0.52
+  m_Height: 9.83
   m_Direction: 1
-  m_Center: {x: 0, y: 480, z: 0}
+  m_Center: {x: 0, y: 4.84, z: 0}
