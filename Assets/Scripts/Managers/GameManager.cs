@@ -39,6 +39,7 @@ public class GameManager : MonoSingleton<GameManager>
         //StartNewGame();
 
         ChangeGameState(GameStates.MainMenu);
+        _baseSpeed = _knobs.baseSpeed;
     }
 
     private void IntitializeNewGame()
