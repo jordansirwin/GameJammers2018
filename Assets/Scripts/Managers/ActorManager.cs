@@ -38,6 +38,11 @@ public class ActorManager : MonoBehaviour
     [SerializeField]
     private int _bonusPointsAwarded = 0;
 
+
+    [Tooltip("If player hits this object, should it be removed from scene?")]
+    [SerializeField]
+    private bool _destroyOnCollision = true;
+
 	private void Start()
 	{
         _gameManager = FindObjectOfType<GameManager>();
@@ -122,8 +127,10 @@ public class ActorManager : MonoBehaviour
         // Wait for effect(s) to finish
         yield return new WaitForSeconds(effectTime);
 
-        // Cleanup
-        Despawn();
+        // Cleanup if needed
+        if (_destroyOnCollision) {
+            Despawn();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
