@@ -38,8 +38,8 @@ GameObject:
   - component: {fileID: 4114728389850044}
   - component: {fileID: 33541203366530406}
   - component: {fileID: 23439976620096376}
-  - component: {fileID: 95679441427580430}
   - component: {fileID: 136704947530689470}
+  - component: {fileID: 111031425372937894}
   m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
@@ -130,23 +130,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!95 &95679441427580430
-Animator:
-  serializedVersion: 3
+--- !u!111 &111031425372937894
+Animation:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1326900835791460}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 671c2f4f58de2714f940ac2cc8d60e9a, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: d699b94b89b3d64449235f9de864ffcb, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114482770587778296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -159,7 +156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onCollisionParticleSystem: {fileID: 0}
-  _onCollisionAudioClip: {fileID: 0}
+  _onCollisionAudioSource: {fileID: 0}
+  _onCollisionAnimation: {fileID: 111031425372937894}
   _avalancheEncroachmentAmount: -1
   _playerFallbackAmount: 1
   _bonusPointsAwarded: 5
