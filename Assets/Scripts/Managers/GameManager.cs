@@ -78,7 +78,8 @@ public class GameManager : MonoSingleton<GameManager>
 
     public int CalculateScore()
     {
-        float currentSize = AvalancheManager.Instance.Size;
+        // v0v, magic!
+        float currentSize = 1 + AvalancheManager.Instance.Size * 5;
         // TODO: fancy calculations or something
 
         return (int)currentSize;
