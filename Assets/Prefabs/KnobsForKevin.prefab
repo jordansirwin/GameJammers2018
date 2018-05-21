@@ -51,18 +51,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e8a46f1a9ce84750abc7c3d14cb5f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 5
+  baseSpeed: 10
   encroachSpeedMultiplier: 0.5
   playerTurnSpeedModifier: {x: 0.5, y: 1}
   speedIncreaseRate: 1
   speedIncreaseAmount: 0.01
+  maxSpeed: 35
   avalancheSizeIncreaseRate: 1
   avalancheSizeIncreaseAmount: 0.5
-  defaultObjectSpawnRate: 10
+  percentChanceForCenterSpawn: 10
+  defaultObjectSpawnRate: 7.5
+  maxObjectsToSpawnPerCycle: 2
   spawnableObjectPrefabs:
   - {fileID: 114497661346278046, guid: 9fd06795113c1f843bb6e383d9f77ee9, type: 2}
   - {fileID: 114249987630521172, guid: 5941bd6caadc84c9da6fee9c71b96f7a, type: 2}
   - {fileID: 114325999671857870, guid: d1eb657e072c445f3a7053d2aae23fb3, type: 2}
   - {fileID: 114482770587778296, guid: 5807f61665ce94e32975e7b20f314f17, type: 2}
   - {fileID: 114436233170187398, guid: 101b1dca0fdf34458adf19dc14742c6e, type: 2}
-  goalScores: 0a00000064000000fa000000f4010000e8030000
+  goalScores: 64000000fa000000f4010000ee020000dc050000
