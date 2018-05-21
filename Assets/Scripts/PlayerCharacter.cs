@@ -48,6 +48,7 @@ public class PlayerCharacter : MonoBehaviour
         }
 
         var startPos = gameObject.transform.position;
+        _targetFallbackPosition.y = _defaultY;
         startPos.y = _defaultY;
         gameObject.transform.position = startPos;
     }
