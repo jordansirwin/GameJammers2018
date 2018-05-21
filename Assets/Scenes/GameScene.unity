@@ -1057,9 +1057,9 @@ MonoBehaviour:
   encroachSpeedMultiplier: 0.5
   playerTurnSpeedModifier: {x: 0.5, y: 1}
   speedIncreaseRate: 1
-  speedIncreaseAmount: 0.01
-  avalancheSizeIncreaseRate: 1
-  avalancheSizeIncreaseAmount: 0.5
+  speedIncreaseAmount: 0.5
+  avalancheSizeIncreaseRate: 0.5
+  avalancheSizeIncreaseAmount: 0.1
   defaultObjectSpawnRate: 10
   spawnableObjectPrefabs:
   - {fileID: 114497661346278046, guid: 9fd06795113c1f843bb6e383d9f77ee9, type: 2}
