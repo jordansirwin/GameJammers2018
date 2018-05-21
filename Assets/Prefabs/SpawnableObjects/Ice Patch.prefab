@@ -236,7 +236,7 @@ MonoBehaviour:
   _onCollisionParticleSystem: {fileID: 0}
   _onCollisionAudioSource: {fileID: 82630062030864622}
   _onCollisionAnimation: {fileID: 0}
-  _avalancheEncroachmentAmount: 2
-  _playerFallbackAmount: -2
+  _avalancheEncroachmentAmount: 1
+  _playerFallbackAmount: -1
   _bonusPointsAwarded: 0
   _destroyOnCollision: 0
