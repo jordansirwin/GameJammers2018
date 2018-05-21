@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224250356771293630}
   - component: {fileID: 222758603351216032}
   - component: {fileID: 114508051854630022}
+  - component: {fileID: 114568182923727792}
   m_Layer: 5
   m_Name: PlayerScoreText
   m_TagString: Untagged
@@ -39,6 +40,7 @@ GameObject:
   - component: {fileID: 222858555121176216}
   - component: {fileID: 114406305276875008}
   - component: {fileID: 114918940806189602}
+  - component: {fileID: 114619304592047314}
   m_Layer: 5
   m_Name: GoalScoreText
   m_TagString: Untagged
@@ -75,6 +77,7 @@ GameObject:
   - component: {fileID: 222570970620444616}
   - component: {fileID: 114508257622956636}
   - component: {fileID: 114677046940082866}
+  - component: {fileID: 114454194104635874}
   m_Layer: 5
   m_Name: TImeText
   m_TagString: Untagged
@@ -142,6 +145,25 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Next goal ->
+--- !u!114 &114454194104635874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1901074619590616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1679637790, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: 35
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &114508051854630022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -208,6 +230,44 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Ride time  ->
+--- !u!114 &114568182923727792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1497536491059582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1679637790, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: 35
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
+--- !u!114 &114619304592047314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1592507116464254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1679637790, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: 35
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &114677046940082866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -297,8 +357,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230.965, y: -133.06665}
-  m_SizeDelta: {x: 461.93, y: 66.533325}
+  m_AnchoredPosition: {x: 247.01096, y: -44.999992}
+  m_SizeDelta: {x: 494.0219, y: 22.499996}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!224 &224283449682918156
 RectTransform:
@@ -318,7 +378,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.45}
   m_AnchorMax: {x: 0.8228699, y: 0.65}
-  m_AnchoredPosition: {x: 0.099998474, y: 0}
+  m_AnchoredPosition: {x: 0.1000061, y: 0}
   m_SizeDelta: {x: 0.3000002, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224894247961965196
@@ -336,8 +396,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230.965, y: -199.59998}
-  m_SizeDelta: {x: 461.93, y: 66.533325}
+  m_AnchoredPosition: {x: 247.01096, y: -67.499985}
+  m_SizeDelta: {x: 494.0219, y: 22.499996}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!224 &224987909179794868
 RectTransform:
@@ -354,6 +414,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230.965, y: 0}
-  m_SizeDelta: {x: 461.93, y: 66.533325}
+  m_AnchoredPosition: {x: 247.01096, y: 0}
+  m_SizeDelta: {x: 494.0219, y: 22.499996}
   m_Pivot: {x: 0.5, y: 1}
