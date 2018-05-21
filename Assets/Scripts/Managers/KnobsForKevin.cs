@@ -28,6 +28,10 @@ public class KnobsForKevin : MonoSingleton<KnobsForKevin>
 
     [Header("Spawn Object Knobs")]
 
+    [Tooltip("To force player to turn left/right, spawn items at center this percent of time")]
+    [Range(1, 100)]
+    public int percentChanceForCenterSpawn = 10;
+
     [Tooltip("Default rate (in seconds) to spawn hazards")]
     public float defaultObjectSpawnRate = 10f;
 

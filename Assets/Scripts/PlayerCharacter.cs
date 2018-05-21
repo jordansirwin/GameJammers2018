@@ -141,11 +141,11 @@ public class PlayerCharacter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Player OnTriggerEnter!");
+        //Debug.Log("Player OnTriggerEnter!");
         if (other.tag != "Avalanche")
             return;
 
-        Debug.Log("Player hit avalanche!");
+        //Debug.Log("Player hit avalanche!");
         GameManager.Instance.GameOver();
     }
 
