@@ -273,7 +273,7 @@ MonoBehaviour:
   _onCollisionAnimation: {fileID: 111031425372937894}
   _avalancheEncroachmentAmount: -1
   _playerFallbackAmount: 1
-  _bonusPointsAwarded: 50
+  _bonusPointsAwarded: 2
   _destroyOnCollision: 1
 --- !u!136 &136704947530689470
 CapsuleCollider:
