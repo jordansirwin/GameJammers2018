@@ -229,7 +229,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -273,7 +273,7 @@ MonoBehaviour:
   _onCollisionAnimation: {fileID: 111031425372937894}
   _avalancheEncroachmentAmount: -1
   _playerFallbackAmount: 1
-  _bonusPointsAwarded: 5
+  _bonusPointsAwarded: 50
   _destroyOnCollision: 1
 --- !u!136 &136704947530689470
 CapsuleCollider:
