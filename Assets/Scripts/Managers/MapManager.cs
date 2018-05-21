@@ -46,7 +46,7 @@ public class MapManager : MonoBehaviour {
 		// spawn objects
 		_timeUntilNextObjectSpawn -= Time.deltaTime;
 		if(_timeUntilNextObjectSpawn <= 0)
-			SpawnObject();
+			SpawnObjects();
 	}
 
 	void AlignPositionWithPlayer() {
@@ -54,11 +54,15 @@ public class MapManager : MonoBehaviour {
 		this.transform.position = newPosition;
 	}
 
-    void SpawnObject() {
+    void SpawnObjects() {
         if (_knobs.spawnableObjectPrefabs.Length == 0) return;
 
-        var rndIndex = Random.Range(0, _knobs.spawnableObjectPrefabs.Length);
-        SpawnObject(_knobs.spawnableObjectPrefabs[rndIndex]);
+        // spawn random number up to max
+        var numberToSpawn = Random.Range(1, _knobs.maxObjectsToSpawnPerCycle + 1);
+        for (int i = 0; i < numberToSpawn; i++) {
+            var rndIndex = Random.Range(0, _knobs.spawnableObjectPrefabs.Length);
+            SpawnObject(_knobs.spawnableObjectPrefabs[rndIndex]);
+        }
 
 		// get time to spawn next hazard
         _timeUntilNextObjectSpawn = GetNextSpawnTime(_knobs.defaultObjectSpawnRate);
@@ -82,7 +86,16 @@ public class MapManager : MonoBehaviour {
 	}
 
 	Vector3 GetSpawnPosition() {
-		var rndX = Random.Range(leftSpawnLimit.position.x, rightSpawnLimit.position.x);
+        
+        float rndX;
+        // spawn stuff in center based on percent
+        if (Random.Range(1, 101) <= _knobs.percentChanceForCenterSpawn) {
+            rndX = 0;
+        }
+        else {
+            rndX = Random.Range(leftSpawnLimit.position.x, rightSpawnLimit.position.x);
+        }
+
 		return new Vector3(rndX, transform.position.y, transform.position.z);
 	}
 }

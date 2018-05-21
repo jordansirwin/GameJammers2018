@@ -74,7 +74,7 @@ public class ActorManager : MonoBehaviour
 	}
 
     private void Despawn() {
-        Debug.Log("Despawning " + gameObject.name);
+        //Debug.Log("Despawning " + gameObject.name);
         Destroy(this.gameObject);
     }
 
@@ -138,7 +138,7 @@ public class ActorManager : MonoBehaviour
         // only trigger if player
         if (other.tag != "Player") return;
 
-        Debug.Log("Trigger: " + gameObject.name + " triggered by " + other.gameObject.name);
+        //Debug.Log("Trigger: " + gameObject.name + " triggered by " + other.gameObject.name);
 
         StartCoroutine(HandleObjectCollision());
 	}

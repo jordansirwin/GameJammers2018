@@ -20,6 +20,9 @@ public class KnobsForKevin : MonoSingleton<KnobsForKevin>
     [Tooltip("How much the game speed should increase at each speedIncreaseRate tick")]
     public float speedIncreaseAmount = 0.5f;
 
+    [Tooltip("Max speed because it's just too crazy past this")]
+    public float maxSpeed = 50f;
+
     [Tooltip("Default rate (in seconds) to increase the avalanche size")]
     public float avalancheSizeIncreaseRate = 1f;
 
@@ -28,8 +31,15 @@ public class KnobsForKevin : MonoSingleton<KnobsForKevin>
 
     [Header("Spawn Object Knobs")]
 
+    [Tooltip("To force player to turn left/right, spawn items at center this percent of time")]
+    [Range(1, 100)]
+    public int percentChanceForCenterSpawn = 10;
+
     [Tooltip("Default rate (in seconds) to spawn hazards")]
     public float defaultObjectSpawnRate = 10f;
+
+    [Tooltip("Max number of objects to spawn per cycle (will spawn between 1 and MAX)")]
+    public int maxObjectsToSpawnPerCycle = 2;
 
     [Tooltip("Prefabs of objects to spawn")]
     public ActorManager[] spawnableObjectPrefabs;
