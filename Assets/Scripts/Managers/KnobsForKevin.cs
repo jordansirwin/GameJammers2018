@@ -38,6 +38,9 @@ public class KnobsForKevin : MonoSingleton<KnobsForKevin>
     [Tooltip("Default rate (in seconds) to spawn hazards")]
     public float defaultObjectSpawnRate = 10f;
 
+    [Tooltip("Max number of objects to spawn per cycle (will spawn between 1 and MAX)")]
+    public int maxObjectsToSpawnPerCycle = 2;
+
     [Tooltip("Prefabs of objects to spawn")]
     public ActorManager[] spawnableObjectPrefabs;
 
