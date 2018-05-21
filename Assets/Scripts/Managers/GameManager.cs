@@ -104,7 +104,10 @@ public class GameManager : MonoSingleton<GameManager>
     {
         while (true) // yolo
         {
-            _baseSpeed += _knobs.speedIncreaseAmount;
+            // only increase if below max speed
+            if (_baseSpeed < _knobs.maxSpeed) {
+                _baseSpeed += _knobs.speedIncreaseAmount;
+            }
             yield return new WaitForSeconds(_knobs.speedIncreaseRate);
         }
     }

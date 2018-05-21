@@ -20,6 +20,9 @@ public class KnobsForKevin : MonoSingleton<KnobsForKevin>
     [Tooltip("How much the game speed should increase at each speedIncreaseRate tick")]
     public float speedIncreaseAmount = 0.5f;
 
+    [Tooltip("Max speed because it's just too crazy past this")]
+    public float maxSpeed = 50f;
+
     [Tooltip("Default rate (in seconds) to increase the avalanche size")]
     public float avalancheSizeIncreaseRate = 1f;
 
