@@ -63,7 +63,7 @@ public class GameManager : MonoSingleton<GameManager>
     }
 
     public void StartNewGame() {
-        Debug.Log("StartNewGame");
+        //Debug.Log("StartNewGame");
         ChangeGameState(GameState.Playing);
     }
 

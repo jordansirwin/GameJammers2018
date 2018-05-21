@@ -82,7 +82,16 @@ public class MapManager : MonoBehaviour {
 	}
 
 	Vector3 GetSpawnPosition() {
-		var rndX = Random.Range(leftSpawnLimit.position.x, rightSpawnLimit.position.x);
+        
+        float rndX;
+        // spawn stuff in center based on percent
+        if (Random.Range(1, 101) <= _knobs.percentChanceForCenterSpawn) {
+            rndX = 0;
+        }
+        else {
+            rndX = Random.Range(leftSpawnLimit.position.x, rightSpawnLimit.position.x);
+        }
+
 		return new Vector3(rndX, transform.position.y, transform.position.z);
 	}
 }
