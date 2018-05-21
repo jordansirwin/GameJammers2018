@@ -25,6 +25,9 @@ public class UIManager : MonoBehaviour {
     [Tooltip("Link to text label showing bonus points scored")]
     [SerializeField]
     private Text _bonusText;
+    [Tooltip("Link to text label showing when goal points scored")]
+    [SerializeField]
+    private Text _goalAchievedText;
     [Tooltip("How many seconds until Bonus Text fades out")]
     [SerializeField]
     private float _bonusTextFadeInSec;
@@ -96,13 +99,23 @@ public class UIManager : MonoBehaviour {
     {
         if (_knobs.goalScores[_goalScoreIndex] <= currentScore)
         {
-            if (_goalScoreIndex < _knobs.goalScores.Length)
+            if (_goalScoreIndex < _knobs.goalScores.Length) {
                 _goalScoreIndex++;
+                ShowGoalAchieved();
+            }
             else
                 Debug.LogWarning("No more goal scores to achieve!");
         }
 
         return _knobs.goalScores[_goalScoreIndex];
+    }
+
+    public void ShowGoalAchieved() {
+        // reset alpha to make it visible
+        var c = _goalAchievedText.color;
+        _goalAchievedText.color = new Color(c.r, c.g, c.b, 1.0f);
+        // fade out
+        StartCoroutine(FadeTextElement(_goalAchievedText));
     }
 
     public void ShowBonusScore(int bonusAmount) {
@@ -112,16 +125,16 @@ public class UIManager : MonoBehaviour {
         var c = _bonusText.color;
         _bonusText.color = new Color(c.r, c.g, c.b, 1.0f);
         // fade out
-        StartCoroutine(FlashBonusScore());
+        StartCoroutine(FadeTextElement(_bonusText));
     }
 
-    private IEnumerator FlashBonusScore() {
+    private IEnumerator FadeTextElement(Text uiText) {
         // fade out over a period of time by reducing the alpha
         const float fadeDelay = 0.25f;
         var fadeAmount = 1f / (_bonusTextFadeInSec/fadeDelay);
-        while (_bonusText.color.a > 0) {
-            var c = _bonusText.color;
-            _bonusText.color = new Color(c.r, c.g, c.b, c.a - fadeAmount);
+        while (uiText.color.a > 0) {
+            var c = uiText.color;
+            uiText.color = new Color(c.r, c.g, c.b, c.a - fadeAmount);
             yield return new WaitForSeconds(fadeDelay);
         }
     }
