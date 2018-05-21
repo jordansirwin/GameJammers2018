@@ -8,6 +8,11 @@ public class GameInputManager : MonoSingleton<GameInputManager>
     [Tooltip("Enable use of Mouse to test touch controls")]
     [SerializeField] private bool _useMouseAsTouch = false;
 
+    private bool _allowTouch = false;
+
+
+
+
     private Camera _mainCamera;
 
     public bool LeftInputActive { get; private set; }
@@ -17,6 +22,12 @@ public class GameInputManager : MonoSingleton<GameInputManager>
     {
         LeftInputActive = false;
         RightInputActive = false;
+
+#if UNITY_WEBGL
+        _allowTouch = false;
+#else
+        _allowTouch = Input.touchSupported;
+#endif
     }
 
     private void Start()
@@ -34,7 +45,7 @@ public class GameInputManager : MonoSingleton<GameInputManager>
         LeftInputActive = false;
         RightInputActive = false;
 
-        if (Input.touchSupported)
+        if (_allowTouch)
         {
             GetInputsFromTouch();
         }
@@ -101,7 +112,7 @@ public class GameInputManager : MonoSingleton<GameInputManager>
 
     private void GetInputFromKeys()
     {
-        LeftInputActive = Input.GetKey(KeyCode.LeftArrow);
-        RightInputActive = Input.GetKey(KeyCode.RightArrow);
+        LeftInputActive = Input.GetAxis("Horizontal") < 0; //Input.GetKey(KeyCode.LeftArrow);
+        RightInputActive = Input.GetAxis("Horizontal") > 0; //Input.GetKey(KeyCode.RightArrow);
     }
 }
