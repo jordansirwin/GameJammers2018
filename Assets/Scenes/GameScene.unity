@@ -286,6 +286,35 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114961515309825332, guid: 9d0a796c65fba47238d7a22d1a6ca7dc,
+        type: 2}
+      propertyPath: m_Text
+      value: 'Make the biggest avalanche
+
+        Using snow and explosions
+
+        And survive!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114961515309825332, guid: 9d0a796c65fba47238d7a22d1a6ca7dc,
+        type: 2}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114961515309825332, guid: 9d0a796c65fba47238d7a22d1a6ca7dc,
+        type: 2}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224256311720329280, guid: 9d0a796c65fba47238d7a22d1a6ca7dc,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -99.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224256311720329280, guid: 9d0a796c65fba47238d7a22d1a6ca7dc,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 149.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d0a796c65fba47238d7a22d1a6ca7dc, type: 2}
   m_IsPrefabParent: 0
@@ -961,7 +990,7 @@ MonoBehaviour:
   maxSpeed: 50
   avalancheSizeIncreaseRate: 0.5
   avalancheSizeIncreaseAmount: 0.1
-  percentChanceForCenterSpawn: 10
+  percentChanceForCenterSpawn: 20
   defaultObjectSpawnRate: 10
   maxObjectsToSpawnPerCycle: 2
   spawnableObjectPrefabs:
@@ -1418,7 +1447,7 @@ Prefab:
     - target: {fileID: 224283449682918156, guid: eea6e1dd3b61f494ca11405dc72b305b,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0.099998474
+      value: 0.1000061
       objectReference: {fileID: 0}
     - target: {fileID: 224283449682918156, guid: eea6e1dd3b61f494ca11405dc72b305b,
         type: 2}
