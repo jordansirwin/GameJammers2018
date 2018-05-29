@@ -6,7 +6,8 @@ using UnityEngine;
 public class AvalancheVisual : MonoBehaviour
 {
     [SerializeField] private AvalancheLayer[] _layers;
-    //[SerializeField] private float _size = 0;
+
+    private float _updateInterval = 5;
 
     private void Start()
     {
@@ -19,11 +20,19 @@ public class AvalancheVisual : MonoBehaviour
 
     private void Update()
     {
+        if(Time.frameCount % _updateInterval == 0)
+        {
+            UpdateVisuals();
+        }
+    }
+
+    private void UpdateVisuals()
+    {
         var size = AvalancheManager.Instance.Size;
 
         foreach (var layer in _layers)
         {
-            if(size >= layer.StartAtSize)
+            if (size >= layer.StartAtSize)
             {
                 if (!layer.Particles.isPlaying)
                 {
@@ -45,7 +54,7 @@ public class AvalancheVisual : MonoBehaviour
                     }
                 }
             }
-            if(layer.UseStopAtSize && size >= layer.StopAtSize && layer.Particles.isPlaying)
+            if (layer.UseStopAtSize && size >= layer.StopAtSize && layer.Particles.isPlaying)
             {
                 layer.Particles.Stop();
             }
