@@ -137,11 +137,14 @@ public class ActorManager : MonoBehaviour
             _gameManager.AddBonusScore(_bonusPointsAwarded);
         }
 
-        // move avalanche/player if required
-        if (System.Math.Abs(_avalancheEncroachmentAmount) > float.Epsilon)
-            _avalancheManager.ModifyEncroachment(_avalancheEncroachmentAmount);
-        if (System.Math.Abs(_playerFallbackAmount) > float.Epsilon)
-            _playerCharacter.ModifyFallback(_playerFallbackAmount);
+        if (!_gameManager.InvincibleMode)
+        {
+            // move avalanche/player if required
+            if (System.Math.Abs(_avalancheEncroachmentAmount) > float.Epsilon)
+                _avalancheManager.ModifyEncroachment(_avalancheEncroachmentAmount);
+            if (System.Math.Abs(_playerFallbackAmount) > float.Epsilon)
+                _playerCharacter.ModifyFallback(_playerFallbackAmount);
+        }
 
         // Wait for effect(s) to finish
         yield return new WaitForSeconds(effectTime);

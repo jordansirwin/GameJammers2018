@@ -42,6 +42,15 @@ public class GameInputManager : MonoSingleton<GameInputManager>
             GameManager.Instance.GameOver();
         }
 
+// Enabled in Editor or build with custom script define symbol
+#if UNITY_EDITOR || ALLOW_HAX
+        // Super secret cheat key
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            GameManager.Instance.InvincibleMode = !GameManager.Instance.InvincibleMode;
+        }
+#endif
+
         LeftInputActive = false;
         RightInputActive = false;
 
@@ -112,7 +121,7 @@ public class GameInputManager : MonoSingleton<GameInputManager>
 
     private void GetInputFromKeys()
     {
-        LeftInputActive = Input.GetAxis("Horizontal") < 0; //Input.GetKey(KeyCode.LeftArrow);
-        RightInputActive = Input.GetAxis("Horizontal") > 0; //Input.GetKey(KeyCode.RightArrow);
+        LeftInputActive = Input.GetAxis("Horizontal") < 0;
+        RightInputActive = Input.GetAxis("Horizontal") > 0;
     }
 }
