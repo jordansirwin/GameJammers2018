@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class MapManager : MonoBehaviour {
@@ -33,7 +32,51 @@ public class MapManager : MonoBehaviour {
 	// keep track of next time to spawn things
     private float _timeUntilNextObjectSpawn;
 
-	// Update is called once per frame
+    private List<ActorManager> _spawnablePool;
+    private List<string> _spawnableNames;
+    private int _poolSize = 5;
+
+    void Start()
+    {
+        InitializeSpawnables();
+    }
+
+    void InitializeSpawnables()
+    {
+        var numSpawnablePrefabs = _knobs.spawnableObjectPrefabs.Length;
+        if (numSpawnablePrefabs == 0) {
+            Debug.LogError("No Spawnable Prefabs set.");
+            return;
+        }
+
+        _spawnableNames = new List<string>();
+        _spawnablePool = new List<ActorManager>();
+
+        foreach(var actor in _knobs.spawnableObjectPrefabs)
+        {
+            _spawnableNames.Add(actor.ActorName);
+
+            for(var i = 0; i < _poolSize; i++)
+            {
+                InstantiateInPool(actor);
+            }
+        }
+    }
+
+    ActorManager InstantiateInPool(ActorManager actorPrefab)
+    {
+        var instance = Instantiate(actorPrefab, _spawnObjectParent.transform);
+
+        if (instance.GetComponentsInChildren<ActorManager>().Length > 1)
+            instance.SetAsCastOfActors();
+        instance.SetDespawnBoundary(topDespawnBoundary.position);
+        instance.gameObject.SetActive(false);
+
+        _spawnablePool.Add(instance);
+
+        return instance;
+    }
+
 	void Update () {
         // if not playing the game, do nothing
         if(_gameManager.GetGameState() != GameState.Playing) {
@@ -60,22 +103,44 @@ public class MapManager : MonoBehaviour {
         // spawn random number up to max
         var numberToSpawn = Random.Range(1, _knobs.maxObjectsToSpawnPerCycle + 1);
         for (int i = 0; i < numberToSpawn; i++) {
-            var rndIndex = Random.Range(0, _knobs.spawnableObjectPrefabs.Length);
-            SpawnObject(_knobs.spawnableObjectPrefabs[rndIndex]);
+            var rndIndex = Random.Range(0, _spawnableNames.Count);
+            SpawnObject(GetSpawnableFromPool(_spawnableNames[rndIndex]));
         }
 
-		// get time to spawn next hazard
+        // get time to spawn next hazard
         _timeUntilNextObjectSpawn = GetNextSpawnTime(_knobs.defaultObjectSpawnRate);
 	}
 
-    void SpawnObject(ActorManager prefab) {
-        var actor = Instantiate(prefab, _spawnObjectParent.transform);
-        actor.transform.position = GetSpawnPosition();
-        actor.SetDespawnBoundary(topDespawnBoundary.position);
+    private ActorManager GetSpawnableFromPool(string name)
+    {
+        ActorManager poolObject = null;
 
-        // does this actor act as a container for other actors? (1 for the object itself)
-        if (actor.GetComponentsInChildren<ActorManager>().Length > 1)
-            actor.SetAsCastOfActors();
+        // Find eligble object in pool
+        for(var i = 0; i < _spawnablePool.Count && poolObject == null; i++)
+        {
+            if(!_spawnablePool[i].gameObject.activeInHierarchy && _spawnablePool[i].ActorName == name)
+                poolObject = _spawnablePool[i];
+        }
+
+        // No eligible object, expand the pool with a new one
+        if(poolObject == null)
+        {
+            foreach (var actor in _knobs.spawnableObjectPrefabs)
+            {
+                if(actor.ActorName == name)
+                {
+                    poolObject = InstantiateInPool(actor);
+                    break;
+                }
+            }
+        }
+
+        return poolObject;
+    }
+
+    void SpawnObject(ActorManager actor) {
+        actor.transform.position = GetSpawnPosition();
+        actor.gameObject.SetActive(true);
     }
 
 	float GetNextSpawnTime(float defaultRate) {
