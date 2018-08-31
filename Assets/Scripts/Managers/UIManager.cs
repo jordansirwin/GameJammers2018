@@ -99,7 +99,7 @@ public class UIManager : MonoBehaviour {
     {
         if (_knobs.goalScores[_goalScoreIndex] <= currentScore)
         {
-            if (_goalScoreIndex < _knobs.goalScores.Length) {
+            if (_goalScoreIndex < _knobs.goalScores.Length - 1) {
                 _goalScoreIndex++;
                 ShowGoalAchieved();
             }

@@ -237,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07840c56689474054b2bf7e2dff88cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _actorName: TreeSmall
   _onCollisionParticleSystem: {fileID: 0}
   _onCollisionAudioSource: {fileID: 82726974369362338}
   _onCollisionAnimation: {fileID: 111884831332657040}

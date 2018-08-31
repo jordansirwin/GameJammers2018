@@ -5,10 +5,15 @@ public class ActorManager : MonoBehaviour
 {
     private bool _isCastOfActors;
     private Vector3 _despawnPosition;
+    private Quaternion _originalAnimatorRotation;
+    private Vector3 _originalAnimatorPosition;
 
     private PlayerCharacter _playerCharacter;
     private AvalancheManager _avalancheManager;
     private GameManager _gameManager;
+
+    [SerializeField]
+    private string _actorName;
 
     [Header("Visual Effects")]
 
@@ -43,14 +48,22 @@ public class ActorManager : MonoBehaviour
     [SerializeField]
     private bool _destroyOnCollision = true;
 
-	private void Start()
+    public string ActorName { get { return _actorName; } }
+
+	private void Awake()
 	{
         _gameManager = FindObjectOfType<GameManager>();
         _playerCharacter = FindObjectOfType<PlayerCharacter>();
         _avalancheManager = FindObjectOfType<AvalancheManager>();
-	}
 
-	public void SetAsCastOfActors() {
+        if (_onCollisionAnimation != null)
+        {
+            _originalAnimatorRotation = _onCollisionAnimation.gameObject.transform.localRotation;
+            _originalAnimatorPosition = _onCollisionAnimation.gameObject.transform.localPosition;
+        }
+    }
+
+    public void SetAsCastOfActors() {
         _isCastOfActors = true;
     }
 
@@ -75,7 +88,13 @@ public class ActorManager : MonoBehaviour
 
     private void Despawn() {
         //Debug.Log("Despawning " + gameObject.name);
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
+
+        if (_onCollisionAnimation != null)
+        {
+            _onCollisionAnimation.gameObject.transform.localRotation = _originalAnimatorRotation;
+            _onCollisionAnimation.gameObject.transform.localPosition = _originalAnimatorPosition;
+        }
     }
 
     IEnumerator HandleObjectCollision() {
@@ -118,11 +137,14 @@ public class ActorManager : MonoBehaviour
             _gameManager.AddBonusScore(_bonusPointsAwarded);
         }
 
-        // move avalanche/player if required
-        if (System.Math.Abs(_avalancheEncroachmentAmount) > float.Epsilon)
-            _avalancheManager.ModifyEncroachment(_avalancheEncroachmentAmount);
-        if (System.Math.Abs(_playerFallbackAmount) > float.Epsilon)
-            _playerCharacter.ModifyFallback(_playerFallbackAmount);
+        if (!_gameManager.InvincibleMode)
+        {
+            // move avalanche/player if required
+            if (System.Math.Abs(_avalancheEncroachmentAmount) > float.Epsilon)
+                _avalancheManager.ModifyEncroachment(_avalancheEncroachmentAmount);
+            if (System.Math.Abs(_playerFallbackAmount) > float.Epsilon)
+                _playerCharacter.ModifyFallback(_playerFallbackAmount);
+        }
 
         // Wait for effect(s) to finish
         yield return new WaitForSeconds(effectTime);

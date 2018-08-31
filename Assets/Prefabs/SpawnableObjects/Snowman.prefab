@@ -268,6 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07840c56689474054b2bf7e2dff88cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _actorName: SnowMan
   _onCollisionParticleSystem: {fileID: 198629457497869974}
   _onCollisionAudioSource: {fileID: 82291048073583226}
   _onCollisionAnimation: {fileID: 111031425372937894}

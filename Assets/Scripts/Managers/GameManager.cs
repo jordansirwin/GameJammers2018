@@ -26,6 +26,7 @@ public class GameManager : MonoSingleton<GameManager>
     public float BaseSpeed { get { return _baseSpeed; } }
     public float GameSpeedX { get { return _speedModifyX * _baseSpeed; } }
     public float GameSpeedY { get { return _speedModifyY * _baseSpeed; } }
+    public bool InvincibleMode { get; set; }
 
     public float Score { get { return CalculateScore(); } }
 
@@ -33,10 +34,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Start()
     {
-        //Intitialize();
-
-        //// HACK: Should be called by menu interactions
-        //StartNewGame();
+        InvincibleMode = false;
 
         ChangeGameState(GameState.MainMenu);
         _baseSpeed = _knobs.baseSpeed;
